@@ -10,6 +10,7 @@ import CaseStudies from './pages/CaseStudies';
 import DeepDive from './pages/DeepDive';
 import Projects from './pages/Projects';
 import ProjectDetail from './pages/ProjectDetail';
+import Gallery from './pages/gallery';
 
 // Import Live Apps Pages
 import ClinicalCompass from './pages/apps/ClinicalCompass';
@@ -79,6 +80,7 @@ function App() {
         <Route element={<AppLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/gallery" element={<Gallery />} />
           <Route path="/toolbox" element={<Toolbox />} />
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/deep/:slug" element={<DeepDive />} />

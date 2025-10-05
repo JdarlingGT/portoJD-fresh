@@ -47,7 +47,7 @@ const MegaMenu: React.FC = () => {
             <div className="mb-2 text-xs uppercase opacity-70">Resources</div>
             <div className="grid gap-1">
               {link('/tools/roi-calculator', 'ROI Calculator', 'Estimate automation impact')}
-              {link('/#design-gallery', 'Design Gallery', 'Lightweight external album')}
+              {link('/gallery', 'Design Gallery', 'Lightweight external album')}
               {link('/#contact', 'Contact', 'Let’s work together')}
             </div>
           </div>
