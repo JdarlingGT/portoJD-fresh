@@ -48,7 +48,7 @@ html {
   .text-slate-400 {
     color: #ffffff !important;
   }
-  
+
   .border-white\/10 {
     border-color: #ffffff !important;
   }
@@ -138,21 +138,21 @@ html {
 
 /* Print Styles */
 @media print {
-  body { 
-    -webkit-print-color-adjust: exact; 
-    print-color-adjust: exact; 
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
     background: white !important;
     color: black !important;
   }
-  a { 
-    color: inherit; 
-    text-decoration: none; 
+  a {
+    color: inherit;
+    text-decoration: none;
   }
-  .print\:hidden { 
-    display: none !important; 
+  .print\:hidden {
+    display: none !important;
   }
-  .print\:grid-cols-1 { 
-    grid-template-columns: 1fr !important; 
+  .print\:grid-cols-1 {
+    grid-template-columns: 1fr !important;
   }
   .print\:text-black {
     color: black !important;

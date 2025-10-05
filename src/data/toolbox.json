@@ -2,274 +2,80 @@
   "competencies": [
     {
       "title": "Web Performance & Optimization",
-      "icon": "⚡",
-      "description": "I build robust web experiences that load fast and scale efficiently. From CDN strategy and cache layers to TTFB optimization, I handle the technical details that drive user engagement and conversion rates.",
-      "highlights": [
-        "CDN strategy, cache layers and TTFB optimization",
-        "Traffic handling systems for high-volume properties", 
-        "Core Web Vitals improvement and monitoring",
-        "Performance budgets and automated optimization"
-      ]
+      "desc": "Full\u2011stack speed: edge caching with Cloudflare, server tuning (Apache/PHP\u2011FPM), WordPress performance with LiteSpeed Cache / WP Rocket, DB optimizations and refactors for strong Core Web Vitals."
     },
     {
-      "title": "Security & Resilience", 
-      "icon": "🛡️",
-      "description": "I architect defense-in-depth security systems with WAF rulesets, bot mitigation, rate limiting, and proactive monitoring. Security isn't an afterthought—it's built into the infrastructure.",
-      "highlights": [
-        "Layered defenses at the edge and origin",
-        "WAF rulesets, bot mitigation, and rate limiting",
-        "Security hardening and origin shielding",
-        "API key scanning and origin IP whitelisting"
-      ]
+      "title": "Security & Infrastructure Hardening",
+      "desc": "WAF, Bot Management, rate\u2011limits in Cloudflare; security headers, DNSSEC, API key hygiene to mitigate attack vectors."
     },
     {
-      "title": "Analytics & Conversion Engineering",
-      "icon": "📊", 
-      "description": "I design and implement comprehensive tracking systems using GA4, GTM, and custom attribution models. Every user interaction is measured, analyzed, and optimized for business outcomes.",
-      "highlights": [
-        "GA4 events that actually drive business actions",
-        "GTM containers and marketing pixel coordination",
-        "Attribution tracking from the database up",
-        "Event tracking systems and post-training evaluations"
-      ]
+      "title": "Analytics & Conversion Tracking",
+      "desc": "Robust data layers with GTM + GA4, custom scripts to capture forms and purchases for accurate attribution."
     },
     {
-      "title": "Commerce + Learning Systems Architecture",
-      "icon": "🏗️",
-      "description": "I architect complex WordPress builds that tie together commerce, learning, and CRM. WooCommerce + LearnDash + CRM integrations, with connections unlock certificates, and forms drive tags and segments.",
-      "highlights": [
-        "Complex WordPress builds connecting commerce, learning, and CRM",
-        "WooCommerce + LearnDash + CRM integrations",
-        "Connections unlock certificates and form-driven tags",
-        "Automated lifecycle workflows and segmentation"
-      ]
-    },
-    {
-      "title": "Ops, Dashboards & Content Systems",
-      "icon": "⚙️",
-      "description": "I build operational dashboards for events, processes, and instructors. I also create CMS/content boards, QA-prompt pipelines, and lightweight internal tools that help marketing teams ship consistent, high-quality content and reports much faster.",
-      "highlights": [
-        "Operational dashboards for events, processes, and instructors",
-        "CMS/content boards and QA-prompt pipelines", 
-        "Lightweight internal tools for marketing teams",
-        "High-quality content and reports delivery systems"
-      ]
+      "title": "Server Administration & DevOps",
+      "desc": "Resource monitoring (htop/Netdata), PHP upgrades, error debugging, and configuration for stability & scale."
     }
   ],
-  "spotlights": [
-    {
-      "title": "Performance Turnaround on a Busy WP Property",
-      "problem": "Site admin points out poor repair rates had been due to a broken database and general caching strategy.",
-      "action": "Audited and reviewed database automated caching, implemented a more intelligent frequency at the core with better compression, and tuned the TTFB/cache hit.",
-      "impact": "Admin reports massive ~50ms faster, and page speed CWV/session improved with better first-time visitor experience."
-    },
-    {
-      "title": "Attribution That Trains Media the Right Way",
-      "problem": "Ad platforms were optimizing for weak signals, making all their campaigns as much conversion and working against.",
-      "action": "Re-designed Google Tag Manager as a centralized event model, created high-level events from server-side CRM events and post-training evaluations as a new very purchase and post-training evaluations as.",
-      "impact": "Lowered Cost Per Acquisition (CPA), delivered a higher Return On Ad Spend (ROAS), and delivered more future analytics with these have positive conversions."
-    },
-    {
-      "title": "Edge-First Security Hardening",
-      "problem": "Manual security policy, WAF, API flows and login brute force attacks were testing server and security risks.",
-      "action": "Built automated defense at the CloudFlare edge, including rate limiting, WAF, associated bots on suspicious platforms, and provided bot management.",
-      "impact": "Attacks stopped reaching origin server, resulting in a dramatic decrease in origin server risk and costs in the logs."
-    },
-    {
-      "title": "Training Lifecycle Automation (Commerce → Learning → CRM)",
-      "problem": "Manual handoffs between sales, training, and marketing were causing delays in onboarding, certification tracking, and CRM segmentation.",
-      "action": "Implemented a fully automated end-to-end system where e-commerce purchases auto-enroll into learning groups, completion events auto-update CRM tags, and post-training surveys trigger PQRST back to directory eligibility.",
-      "impact": "Achieved near-certificate stopping, linear support tickets, and created segmentation across flows that accurately predict a user's real-time status."
-    }
-  ],
-  "playbooks": [
-    {
-      "title": "Evaluation → Tag → Cart",
-      "description": "A standardized flow where a form submission triggers an automation that tags the data to a spreadsheet, applies the correct tags in the CRM, starts a post-course email sequence, and unlocks the user's certificates.",
-      "steps": [
-        "Group membership change detection",
-        "Training metadata tracking", 
-        "CRM tag and segment application",
-        "Data state sync",
-        "Batch synchronization"
-      ],
-      "link": "/deep/the-qualifier"
-    },
-    {
-      "title": "Group Enrollment → CRM Sync",
-      "description": "An event-driven workflow where a change in a user's learning group membership automatically updates the relevant training metadata, applies the correct tags and segments in the CRM, and notifies the relevant internal teams.",
-      "steps": [
-        "Group membership change detection",
-        "Training metadata tracking",
-        "CRM tag and segment application", 
-        "Data state sync",
-        "Batch synchronization"
-      ],
-      "link": "/deep/the-navigator"
-    },
-    {
-      "title": "Completion → Directory Eligibility",
-      "description": "A combination of automated and manual checks that, when triggered, mark a user's training as complete in the CRM and make their status as 'eligible' in public-facing provider directories.",
-      "steps": [
-        "Completion event validation",
-        "Certification status update",
-        "Directory eligibility marking",
-        "Public profile activation",
-        "Notification workflows"
-      ]
-    },
-    {
-      "title": "Event Schema → Self-Serve Dashboards", 
-      "description": "A data architecture model where normalized event and venue fields are the single source of truth. A new list then pulls data from CRM, collects, and turns to surface critical KPIs like enrollment velocity and risk flags.",
-      "steps": [
-        "Event schema normalization",
-        "Venue field standardization", 
-        "CRM data integration",
-        "KPI calculation engine",
-        "Self-serve dashboard creation"
-      ]
-    }
-  ],
-  "currentSetup": {
-    "title": "My Current Stack",
-    "description": "The core tools I rely on for building scalable marketing systems",
-    "tools": [
-      {
-        "name": "Cloudflare",
-        "role": "Edge security, caching, and performance optimization",
-        "why": "Unmatched global network with powerful WAF and bot protection"
-      },
-      {
-        "name": "Google Analytics 4 + GTM",
-        "role": "Analytics foundation and tag management",
-        "why": "Clean data collection with privacy-first measurement"
-      },
-      {
-        "name": "FluentCRM + WP Fusion",
-        "role": "CRM and lifecycle automation",
-        "why": "Native WordPress integration with powerful segmentation"
-      },
-      {
-        "name": "React + TypeScript",
-        "role": "Frontend development and user interfaces",
-        "why": "Type safety and component reusability for complex UIs"
-      },
-      {
-        "name": "PHP + MySQL",
-        "role": "Backend systems and data processing",
-        "why": "Mature ecosystem with excellent WordPress integration"
-      },
-      {
-        "name": "GitHub Actions",
-        "role": "CI/CD and deployment automation",
-        "why": "Seamless integration with version control and testing"
-      }
+  "software": {
+    "CDN & Security": [
+      "Cloudflare",
+      "Netdata"
+    ],
+    "Analytics & Tag Management": [
+      "Google Tag Manager",
+      "Google Analytics 4",
+      "Umami"
+    ],
+    "Advertising & Conversion": [
+      "Google Ads",
+      "PixelYourSite Pro",
+      "OptinMonster"
+    ],
+    "Hosting & Server": [
+      "Liquid Web",
+      "GoDaddy",
+      "Apache",
+      "PHP-FPM"
+    ],
+    "WordPress Core": [
+      "WP-CLI",
+      "MU Plugins",
+      "WP-Cron",
+      "Heartbeat API"
+    ],
+    "Caching Plugins": [
+      "WP Rocket",
+      "LiteSpeed Cache",
+      "Autoptimize"
+    ],
+    "CRM": [
+      "FluentCRM"
+    ],
+    "Forms": [
+      "Gravity Forms",
+      "WPForms"
+    ],
+    "LMS": [
+      "LearnDash"
+    ],
+    "Builder": [
+      "Divi"
+    ],
+    "Dev Tools": [
+      "Git",
+      "VS Code"
     ]
   },
-  "stack": {
-    "Automation & CRM": [
-      {
-        "name": "FluentCRM",
-        "role": "primary",
-        "why": "Native WordPress CRM with powerful automation capabilities",
-        "link": "/case-studies/the-launchpad"
-      },
-      {
-        "name": "WP Fusion",
-        "role": "primary", 
-        "why": "Bridges CRM data with WordPress user management and content",
-        "link": "/case-studies/the-launchpad"
-      },
-      {
-        "name": "LearnDash",
-        "role": "secondary",
-        "why": "LMS integration for training lifecycle automation",
-        "link": "/case-studies/the-engine-room"
-      },
-      {
-        "name": "Uncanny Automator",
-        "role": "secondary",
-        "why": "Visual workflow builder for complex automation chains",
-        "link": "/case-studies/the-engine-room"
-      }
-    ],
-    "Analytics & Tracking": [
-      {
-        "name": "Google Analytics 4",
-        "role": "primary",
-        "why": "Privacy-first analytics with enhanced ecommerce tracking",
-        "link": "/case-studies/the-analyst"
-      },
-      {
-        "name": "Google Tag Manager",
-        "role": "primary",
-        "why": "Centralized tag management with clean data layer implementation",
-        "link": "/case-studies/the-analyst"
-      },
-      {
-        "name": "Server-side Events",
-        "role": "primary",
-        "why": "Bypass ad blockers and improve data quality",
-        "link": "/case-studies/the-compass"
-      },
-      {
-        "name": "BigQuery",
-        "role": "secondary",
-        "why": "Advanced analytics and custom reporting for large datasets",
-        "link": "/case-studies/the-guardian"
-      }
-    ],
-    "Performance & Infra": [
-      {
-        "name": "Cloudflare",
-        "role": "primary",
-        "why": "Edge security, caching, and global performance optimization",
-        "link": "/case-studies/the-shield"
-      },
-      {
-        "name": "Netdata",
-        "role": "primary",
-        "why": "Real-time server monitoring with custom alerting",
-        "link": "/case-studies/the-stabilizer"
-      },
-      {
-        "name": "PHP-FPM/OPcache",
-        "role": "primary",
-        "why": "Optimized PHP performance for high-traffic applications",
-        "link": "/case-studies/the-stabilizer"
-      },
-      {
-        "name": "LiteSpeed Cache",
-        "role": "secondary",
-        "why": "Advanced caching with ESI support for dynamic content",
-        "link": "/case-studies/the-optimizer"
-      }
-    ],
-    "Dev & Systems": [
-      {
-        "name": "React + Vite",
-        "role": "primary",
-        "why": "Modern frontend development with fast build times",
-        "link": "/case-studies/the-navigator"
-      },
-      {
-        "name": "TypeScript",
-        "role": "primary",
-        "why": "Type safety and better developer experience for complex projects",
-        "link": "/projects"
-      },
-      {
-        "name": "WordPress/WooCommerce",
-        "role": "primary",
-        "why": "Flexible CMS with extensive ecosystem for marketing systems",
-        "link": "/case-studies/the-closer"
-      },
-      {
-        "name": "GitHub Actions",
-        "role": "secondary",
-        "why": "Automated testing, building, and deployment workflows",
-        "link": "/case-studies/the-safety-net"
-      }
-    ]
-  }
+  "languages": [
+    "PHP",
+    "JavaScript",
+    "jQuery",
+    "SQL",
+    "CSS",
+    "HTML"
+  ],
+  "spotlights": [],
+  "stack": {},
+  "playbooks": []
 }
