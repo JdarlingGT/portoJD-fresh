@@ -62,23 +62,7 @@ const stats = [
 ];
 
 const Home = () => {
-	const [taglineIndex, setTaglineIndex] = useState(0);
 	const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
-	const taglines = [
-		'Turning complexity into clarity.',
-		'Curiosity into conversion.',
-		'Chaos into competitive advantage.',
-	];
-
-	useEffect(() => {
-		const interval = setInterval(() => {
-			setTaglineIndex((prevIndex) =>
-				prevIndex === taglines.length - 1 ? 0 : prevIndex + 1
-			);
-		}, 3000);
-
-		return () => clearInterval(interval);
-	}, [taglines.length]);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
