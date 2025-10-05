@@ -1,0 +1,79 @@
+{
+  "items": [
+    {
+      "id": "graston",
+      "title": "Graston Technique\u00ae",
+      "subtitle": "Full-Stack Marketing & Systems Transformation",
+      "category": [
+        "automation",
+        "analytics",
+        "ecommerce"
+      ],
+      "tech": [
+        "WordPress",
+        "FluentCRM",
+        "LearnDash",
+        "Cloudflare",
+        "GTM",
+        "GA4"
+      ],
+      "impact": [
+        "70% reduction in support tickets",
+        "40% checkout conversion lift",
+        "400+ CRM workflows"
+      ],
+      "summary": "Complete marketing + technology transformation: internal instructor dashboard, AI support assistant, CRM automation, and e\u2011commerce innovation.",
+      "problem": "Fragmented systems, manual admin work, low visibility into events and sales.",
+      "solution": "Unified ecosystem on WP + LearnDash + FluentCRM; AI support; 400+ workflows; 'Buy Now, Choose Later' checkout.",
+      "results": "Automated, efficient, data-driven engine re-establishing brand authority and growth."
+    },
+    {
+      "id": "black-letter-legal",
+      "title": "Black Letter Legal",
+      "subtitle": "High-Conversion B2B Lead Generation",
+      "category": [
+        "branding",
+        "analytics"
+      ],
+      "tech": [
+        "WordPress",
+        "SEO",
+        "LinkedIn",
+        "CRM"
+      ],
+      "impact": [
+        "250% increase in qualified leads",
+        "80% improvement in case conversion rate",
+        "35% growth in average case value"
+      ],
+      "summary": "Multi-channel strategy with authoritative content, LinkedIn engine, and CRM nurturing.",
+      "problem": "Crowded market, lacking authority and nurturing.",
+      "solution": "SEO overhaul, LinkedIn system, and automated scoring + segments.",
+      "results": "Predictable client acquisition with strong conversion lifts."
+    },
+    {
+      "id": "gomez-craft-barbecue",
+      "title": "Gomez Craft Barbecue",
+      "subtitle": "Restaurant Brand Launch & Digital Presence",
+      "category": [
+        "branding",
+        "ecommerce"
+      ],
+      "tech": [
+        "Branding",
+        "Web",
+        "Mobile App",
+        "Local SEO"
+      ],
+      "impact": [
+        "400% increase in online orders",
+        "50% growth in repeat customers",
+        "200% social engagement lift"
+      ],
+      "summary": "Full brand identity, custom mobile ordering, and local SEO.",
+      "problem": "New entrant needed powerful brand + digital.",
+      "solution": "Identity, app, and campaigns.",
+      "results": "Cohesive strategy that rapidly grew orders and community."
+    }
+  ]
+}

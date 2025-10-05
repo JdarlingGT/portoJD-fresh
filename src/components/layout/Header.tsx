@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import MegaMenu from './MegaMenu';
 import SearchModal from '../ui/SearchModal';
+import ThemeToggle from '../ThemeToggle';
 import { Search } from 'lucide-react';
 
 const Header = () => {
@@ -36,6 +37,7 @@ const Header = () => {
                 <Search className="w-4 h-4" />
                 <span>Search /</span>
               </button>
+              <ThemeToggle />
               <div className="hidden md:flex items-center space-x-3">
                 <Link
                   to="/platform"

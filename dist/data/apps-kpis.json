@@ -1,0 +1,30 @@
+{
+  "clinical-compass": {
+    "chips": [
+      { "label": "Avg session time", "value": "5m 12s" },
+      { "label": "Protocol completions", "value": "68%" },
+      { "label": "Decision nodes", "value": "12" }
+    ]
+  },
+  "roi-calculator": {
+    "chips": [
+      { "label": "Avg inputs/session", "value": "7.3" },
+      { "label": "Median payback", "value": "3.2 mo" },
+      { "label": "Export usage", "value": "41%" }
+    ]
+  },
+  "license-requirements": {
+    "chips": [
+      { "label": "States covered", "value": "50" },
+      { "label": "Lookup speed (p95)", "value": "190ms" },
+      { "label": "Copy-to-clipboard", "value": "63%" }
+    ]
+  },
+  "smart-pricing": {
+    "chips": [
+      { "label": "Pricing scenarios", "value": "24" },
+      { "label": "Avg config time", "value": "2m 45s" },
+      { "label": "Export rate", "value": "78%" }
+    ]
+  }
+}

@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Outlet, useLocation, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 // Import Pages
 import Home from './pages/Home';
@@ -9,6 +10,7 @@ import CaseStudies from './pages/CaseStudies';
 import DeepDive from './pages/DeepDive';
 import Projects from './pages/Projects';
 import ProjectDetail from './pages/ProjectDetail';
+import Gallery from './pages/gallery';
 
 // Import Live Apps Pages
 import ClinicalCompass from './pages/apps/ClinicalCompass';
@@ -36,6 +38,7 @@ import PlatformDemo from './pages/PlatformDemo';
 import Header from './components/layout/Header';
 import Preloader from './components/ui/Preloader';
 import Footer from './components/layout/Footer';
+import HepAssistant from './components/ui/HepAssistant';
 
 function useGA(){
   const { pathname, search } = useLocation();
@@ -47,15 +50,25 @@ function useGA(){
 }
 
 const AppLayout = () => {
+  const location = useLocation();
   useGA();
   return (
     <>
       <Preloader />
       <Header />
-      <main>
-        <Outlet />
-      </main>
+      <AnimatePresence mode="wait">
+        <motion.main
+          key={location.pathname}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3 }}
+        >
+          <Outlet />
+        </motion.main>
+      </AnimatePresence>
       <Footer />
+      <HepAssistant />
     </>
   );
 };
@@ -67,12 +80,13 @@ function App() {
         <Route element={<AppLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/gallery" element={<Gallery />} />
           <Route path="/toolbox" element={<Toolbox />} />
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/deep/:slug" element={<DeepDive />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:id" element={<ProjectDetail />} />
-          
+
           {/* Live Apps Routes */}
           <Route path="/apps/clinical-compass" element={<ClinicalCompass />} />
           <Route path="/apps/roi" element={<ROICalculator />} />
@@ -81,7 +95,7 @@ function App() {
           <Route path="/resume" element={<Resume />} />
           <Route path="/cv" element={<Navigate to="/resume" replace />} />
           <Route path="/contact" element={<Contact />} />
-          
+
           {/* MarTech Stack Routes */}
           <Route path="/martech" element={<MarTechStack />} />
           <Route path="/martech/enterprise-security" element={<EnterpriseSecurity />} />
@@ -90,11 +104,11 @@ function App() {
           <Route path="/martech/lead-conversion" element={<LeadConversion />} />
           <Route path="/martech/interactive-maps" element={<InteractiveMaps />} />
           <Route path="/martech/backend-reliability" element={<BackendReliability />} />
-          
+
           {/* Platform Routes */}
           <Route path="/platform" element={<PlatformOverview />} />
           <Route path="/platform/demo" element={<PlatformDemo />} />
-          
+
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
