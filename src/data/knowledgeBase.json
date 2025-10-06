@@ -1,0 +1,12 @@
+{
+  "questions": [
+    {
+      "question": "What is the AI agent?",
+      "answer": "The AI agent is a virtual assistant designed to help users with various tasks."
+    },
+    {
+      "question": "How can I submit a question?",
+      "answer": "You can submit a question using the input field in the AI assistant interface."
+    }
+  ]
+}

@@ -192,3 +192,24 @@ html {
     margin-top: 1rem !important;
   }
 }
+
+/* Animations for Hep Assistant */
+@keyframes sit {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes attentive {
+  0%, 100% { transform: rotate(0); }
+  50% { transform: rotate(5deg); }
+}
+
+@keyframes pant {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes nap {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
