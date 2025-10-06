@@ -1,84 +1,57 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import menuConfig from '../../data/menu.json';
+import React, { useEffect, useRef, useState } from 'react';
+import ThemeToggle from '../ui/ThemeToggle';
 
-interface MenuLink {
-  label: string;
-  href: string;
-}
+const link = (href: string, label: string, sub?: string) => (
+  <a href={href} className="group block rounded-lg p-3 hover:bg-white/5 focus:bg-white/10 focus:outline-none">
+    <div className="text-sm font-medium">{label}</div>
+    {sub && <div className="text-xs opacity-70 group-hover:opacity-90">{sub}</div>}
+  </a>
+);
 
-
-const MegaMenu = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
+const MegaMenu: React.FC = () => {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const onDoc = (e: MouseEvent) => { if (!ref.current?.contains(e.target as Node)) setOpen(false); };
+    document.addEventListener('click', onDoc);
+    return () => document.removeEventListener('click', onDoc);
+  }, []);
   return (
-    <nav className="relative">
-      <div className="hidden lg:block">
-        <button
-          onMouseEnter={() => setIsOpen(true)}
-          onMouseLeave={() => setIsOpen(false)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              setIsOpen(!isOpen);
-            }
-            if (e.key === 'Escape') {
-              setIsOpen(false);
-            }
-          }}
-          aria-expanded={isOpen}
-          aria-haspopup="true"
-          className="text-sm font-semibold text-slate-300 hover:text-white transition-colors"
-        >
-          Menu
-        </button>
-
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{ duration: 0.2 }}
-              onMouseEnter={() => setIsOpen(true)}
-              onMouseLeave={() => setIsOpen(false)}
-              className="absolute top-full left-0 mt-2 w-[600px] bg-black/90 backdrop-blur-lg border border-white/10 rounded-xl shadow-2xl z-50 p-6"
-            >
-              <div className="grid grid-cols-5 gap-6">
-                {menuConfig.columns.map((column) => (
-                  <div key={column.label} className="space-y-3">
-                    <h3 className="text-white font-bold text-sm uppercase tracking-wide">
-                      {column.label}
-                    </h3>
-                    <ul className="space-y-2">
-                      {column.links.map((link: MenuLink) => (
-                        <li key={link.href}>
-                          <Link
-                            to={link.href}
-                            className="text-slate-300 hover:text-cyan-400 transition-colors text-sm block py-1"
-                            onClick={() => setIsOpen(false)}
-                          >
-                            {link.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+    <nav className="sticky top-0 z-40 backdrop-blur border-b border-white/10 bg-black/30 text-white dark:bg-black/30">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+        <a href="/" className="font-semibold tracking-wide">JD</a>
+        <div className="flex items-center gap-3">
+          <button onClick={() => setOpen(v=>!v)} className="rounded-md border border-white/10 px-3 py-1.5 hover:bg-white/10">Menu</button>
+          <ThemeToggle />
+        </div>
       </div>
-
-      {/* Simple navigation for smaller screens */}
-      <div className="lg:hidden">
-        <ul className="flex items-center space-x-4 text-sm font-semibold text-slate-300">
-          <li><Link to="/about" className="hover:text-white transition-colors">About</Link></li>
-          <li><Link to="/case-studies" className="hover:text-white transition-colors">Cases</Link></li>
-          <li><Link to="/projects" className="hover:text-white transition-colors">Projects</Link></li>
-          <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-        </ul>
+      <div ref={ref} className={`transition-[max-height] duration-300 overflow-hidden ${open ? 'max-h-[520px]' : 'max-h-0'}`}>
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 pb-6 pt-2 sm:grid-cols-3">
+          <div>
+            <div className="mb-2 text-xs uppercase opacity-70">About & Expertise</div>
+            <div className="grid gap-1">
+              {link('/#about', 'Who I Am', 'Hybrid strategist + systems architect')}
+              {link('/#journey', 'Career Timeline', 'Progression & highlights')}
+              {link('/skills', 'Areas of Expertise', 'Automation, Analytics, Infra')}
+            </div>
+          </div>
+          <div>
+            <div className="mb-2 text-xs uppercase opacity-70">Case Studies</div>
+            <div className="grid gap-1">
+              {link('/case-studies', 'All Case Studies', 'Filter by category')}
+              {link('/case-studies#graston', 'Graston Technique®', 'Full-stack marketing & systems')}
+              {link('/case-studies#black-letter-legal', 'Black Letter Legal', 'B2B lead generation engine')}
+            </div>
+          </div>
+          <div>
+            <div className="mb-2 text-xs uppercase opacity-70">Resources</div>
+            <div className="grid gap-1">
+              {link('/tools/roi-calculator', 'ROI Calculator', 'Estimate automation impact')}
+              {link('/gallery', 'Design Gallery', 'Lightweight external album')}
+              {link('/#contact', 'Contact', 'Let’s work together')}
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
   );
