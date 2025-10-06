@@ -1,73 +1,87 @@
 import * as React from 'react';
+import { lazy, Suspense, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Outlet, useLocation, Navigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // Log React version
 console.log('React version:', React.version);
 
 // Check if framer-motion is recognized
-import { motion } from 'framer-motion';
 console.log('Framer Motion:', motion);
-import { BrowserRouter, Routes, Route, Outlet, useLocation, Navigate } from 'react-router-dom';
-import { useEffect } from 'react';
-import { AnimatePresence } from 'framer-motion';
 
-// Import Pages
-import Home from './pages/Home';
-import About from './pages/About';
-import Toolbox from './pages/Toolbox';
-import CaseStudies from './pages/CaseStudies';
-import DeepDive from './pages/DeepDive';
-import Projects from './pages/Projects';
-import ProjectDetail from './pages/ProjectDetail';
-import Gallery from './pages/gallery';
+// Lazy-loaded Pages
+const Home = lazy(() => import('./pages/Home'));
+const About = lazy(() => import('./pages/About'));
+const Toolbox = lazy(() => import('./pages/Toolbox'));
+const CaseStudies = lazy(() => import('./pages/CaseStudies'));
+const DeepDive = lazy(() => import('./pages/DeepDive'));
+const Projects = lazy(() => import('./pages/Projects'));
+const ProjectDetail = lazy(() => import('./pages/ProjectDetail'));
+const Gallery = lazy(() => import('./pages/gallery'));
 
-// Import Live Apps Pages
-import ClinicalCompass from './pages/apps/ClinicalCompass';
-import ROICalculator from './pages/apps/ROICalculator';
-import LicenseRequirements from './pages/apps/LicenseRequirements';
-import SmartPricing from './pages/apps/SmartPricing';
-import Resume from './pages/Resume';
-import Contact from './pages/Contact';
-import NotFound from './pages/NotFound';
+// Lazy-loaded Live Apps Pages
+const ClinicalCompass = lazy(() => import('./pages/apps/ClinicalCompass'));
+const ROICalculator = lazy(() => import('./pages/apps/ROICalculator'));
+const LicenseRequirements = lazy(() => import('./pages/apps/LicenseRequirements'));
+const SmartPricing = lazy(() => import('./pages/apps/SmartPricing'));
+const Resume = lazy(() => import('./pages/Resume'));
+const Contact = lazy(() => import('./pages/Contact'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
-// Import MarTech Stack Pages
-import MarTechStack from './pages/MarTechStack';
-import EnterpriseSecurity from './pages/martech/EnterpriseSecurity';
-import PerformanceOptimization from './pages/martech/PerformanceOptimization';
-import MarketingAnalytics from './pages/martech/MarketingAnalytics';
-import LeadConversion from './pages/martech/LeadConversion';
-import InteractiveMaps from './pages/martech/InteractiveMaps';
-import BackendReliability from './pages/martech/BackendReliability';
+// Lazy-loaded MarTech Stack Pages
+const MarTechStack = lazy(() => import('./pages/MarTechStack'));
+const EnterpriseSecurity = lazy(() => import('./pages/martech/EnterpriseSecurity'));
+const PerformanceOptimization = lazy(() => import('./pages/martech/PerformanceOptimization'));
+const MarketingAnalytics = lazy(() => import('./pages/martech/MarketingAnalytics'));
+const LeadConversion = lazy(() => import('./pages/martech/LeadConversion'));
+const InteractiveMaps = lazy(() => import('./pages/martech/InteractiveMaps'));
+const BackendReliability = lazy(() => import('./pages/martech/BackendReliability'));
 
-// Import Platform Pages
-import PlatformOverview from './pages/PlatformOverview';
-import PlatformDemo from './pages/PlatformDemo';
+// Lazy-loaded Platform Pages
+const PlatformOverview = lazy(() => import('./pages/PlatformOverview'));
+const PlatformDemo = lazy(() => import('./pages/PlatformDemo'));
 
-// Import Layout
+// Layout
 import Header from './components/layout/Header';
 import Preloader from './components/ui/Preloader';
 import Footer from './components/layout/Footer';
-import HepAssistant from './components/ui/HepAssistant';
-import HepInsightsDashboard from './components/admin/HepInsightsDashboard';
-import HepMetrics from './utils/HepMetrics';
-import HepDebugConsole from './components/admin/HepDebugConsole';
+import RouteLoader from './components/ui/RouteLoader';
 
-function useGA(){
+const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_ID;
+
+function useGA() {
   const { pathname, search } = useLocation();
+
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('config', 'G-XXXX', { page_path: pathname + search });
+    if (typeof window === 'undefined' || !GA_MEASUREMENT_ID) return;
+
+    if (!document.querySelector('script[data-gtag]')) {
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+      script.dataset.gtag = 'true';
+      document.head.appendChild(script);
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = (...args: unknown[]) => {
+        window.dataLayer?.push(args);
+      };
+
+      window.gtag('js', new Date());
+      window.gtag('config', GA_MEASUREMENT_ID, { send_page_view: false });
     }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !GA_MEASUREMENT_ID || !window.gtag) return;
+
+    window.gtag('config', GA_MEASUREMENT_ID, { page_path: pathname + search });
   }, [pathname, search]);
 }
 
 const AppLayout = () => {
   const location = useLocation();
   useGA();
-
-  // Initialize analytics once per app mount
-  useEffect(() => {
-    HepMetrics.init();
-  }, []);
 
   // Handle hash scrolling for anchor links
   useEffect(() => {
@@ -94,12 +108,12 @@ const AppLayout = () => {
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3 }}
         >
-          <Outlet />
+          <Suspense fallback={<RouteLoader />}>
+            <Outlet />
+          </Suspense>
         </motion.main>
       </AnimatePresence>
       <Footer />
-      <HepAssistant />
-      <HepDebugConsole />
     </>
   );
 };
@@ -140,9 +154,6 @@ function App() {
           <Route path="/platform" element={<PlatformOverview />} />
           <Route path="/platform/demo" element={<PlatformDemo />} />
 
-          {/* Admin - Hep Insights (dev-only or via query gate inside component) */}
-          <Route path="/admin/hep-insights" element={<HepInsightsDashboard />} />
-
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
@@ -155,6 +166,7 @@ export default App;
 // Extend window type for Google Analytics
 declare global {
   interface Window {
-    gtag?: (command: string, targetId: string, config?: { page_path: string }) => void;
+    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
   }
 }

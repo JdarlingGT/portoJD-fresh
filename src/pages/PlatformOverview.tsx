@@ -1,18 +1,10 @@
-import { useEffect, useState } from "react";
-import KPI from "../components/blocks/KPI";
+import Kpi from "../components/blocks/KPI";
 import FeatureList from "../components/blocks/FeatureList";
 import ScreenGallery from "../components/blocks/ScreenGallery";
-
-type Data = typeof import("../data/platform-overview.json");
+import platformOverviewData from "../data/platform-overview.json";
 
 export default function PlatformOverview() {
-  const [data, setData] = useState<Data | null>(null);
-
-  useEffect(() => {
-    import("../data/platform-overview.json").then(m => setData(m as any));
-  }, []);
-
-  if (!data) return null;
+  const data = platformOverviewData;
 
   return (
     <main className="min-h-screen bg-[#0F0F0F] text-white">
@@ -33,7 +25,9 @@ export default function PlatformOverview() {
 
       <section className="border-t border-white/10">
         <div className="max-w-6xl mx-auto px-6 py-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {data.kpis.map((k, i) => <KPI key={i} {...k} />)}
+          {data.kpis.map(kpi => (
+            <Kpi key={kpi.label} {...kpi} />
+          ))}
         </div>
       </section>
 
@@ -56,8 +50,8 @@ export default function PlatformOverview() {
         <div className="max-w-6xl mx-auto px-6 py-14">
           <h3 className="text-2xl font-semibold mb-4">Tech & Architecture</h3>
           <ul className="flex flex-wrap gap-2">
-            {data.tech.map((t, i) => (
-              <li key={i} className="text-xs px-3 py-1 rounded-full bg-white/5 border border-white/10">{t}</li>
+            {data.tech.map(techItem => (
+              <li key={techItem} className="text-xs px-3 py-1 rounded-full bg-white/5 border border-white/10">{techItem}</li>
             ))}
           </ul>
           <div className="mt-8 flex flex-wrap gap-3">

@@ -1,9 +1,37 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ExternalLink, Linkedin } from 'lucide-react';
 import toolboxData from '../data/toolbox.json';
-import HepMetrics from '../utils/HepMetrics';
 import LogoGrid from '../components/LogoGrid';
+
+type RawCompetency = {
+  title?: string;
+  description?: string;
+  desc?: string;
+  icon?: string;
+  highlights?: string[];
+};
+
+type Competency = {
+  title: string;
+  description: string;
+  icon: string;
+  highlights: string[];
+};
+
+type Spotlight = {
+  title: string;
+  problem: string;
+  action: string;
+  impact: string;
+};
+
+type Playbook = {
+  title: string;
+  description: string;
+  steps?: string[];
+  link?: string;
+};
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -28,6 +56,21 @@ const staggerContainer = {
 export default function Toolbox() {
   const [activeTab, setActiveTab] = useState('strengths');
   const [stackCategory, setStackCategory] = useState('all');
+  const competencies: Competency[] = useMemo(() => {
+    const raw = toolboxData.competencies as RawCompetency[] | undefined;
+    if (!raw) {
+      return [];
+    }
+    return raw.map((competency) => ({
+      title: competency.title ?? 'Untitled Competency',
+      description: competency.description ?? competency.desc ?? '',
+      icon: competency.icon ?? '🔧',
+      highlights: Array.isArray(competency.highlights) ? competency.highlights : []
+    }));
+  }, []);
+
+  const spotlights = useMemo(() => (toolboxData.spotlights ?? []) as Spotlight[], []);
+  const playbooks = useMemo(() => (toolboxData.playbooks ?? []) as Playbook[], []);
 
   return (
     <main className="min-h-screen bg-[#0F0F0F] text-white">
@@ -69,14 +112,12 @@ export default function Toolbox() {
               >
                 <button
                   className="bg-cyan-400 text-black px-6 py-3 rounded-lg font-semibold hover:bg-cyan-300 transition-colors flex items-center gap-2"
-                  onClick={() => HepMetrics.logEvent({ type: 'toolbox_click', id: 'linkedin', source: 'toolbox' })}
                 >
                   <Linkedin className="w-4 h-4" />
                   Connect on LinkedIn
                 </button>
                 <button
                   className="border border-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors flex items-center gap-2"
-                  onClick={() => HepMetrics.logEvent({ type: 'toolbox_click', id: 'profile', source: 'toolbox' })}
                 >
                   <ExternalLink className="w-4 h-4" />
                   View Profile
@@ -145,9 +186,9 @@ export default function Toolbox() {
               What I'm hired to do. These are the foundational capabilities that drive results and solve complex technical challenges.
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {toolboxData.competencies.map((competency: any, index: number) => (
+              {competencies.map((competency) => (
                 <motion.div
-                  key={index}
+                  key={competency.title}
                   className="p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl hover:bg-white/10 transition-all duration-300"
                   variants={slideUp}
                   whileHover={{ y: -5 }}
@@ -161,10 +202,10 @@ export default function Toolbox() {
                   <p className="text-slate-300 mb-4 leading-relaxed">
                     {competency.description}
                   </p>
-                  {competency.highlights && (
+                  {competency.highlights.length > 0 && (
                     <ul className="space-y-2">
-                      {competency.highlights.map((highlight: string, idx: number) => (
-                        <li key={idx} className="text-sm text-slate-400 flex items-start">
+                      {competency.highlights.map((highlight) => (
+                        <li key={`${competency.title}-${highlight}`} className="text-sm text-slate-400 flex items-start">
                           <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
                           {highlight}
                         </li>
@@ -192,9 +233,9 @@ export default function Toolbox() {
               From problem to impact. Real examples of technical problem-solving that showcase strategic thinking and execution.
             </p>
             <div className="space-y-8">
-              {toolboxData.spotlights.map((spotlight: any, index: number) => (
+              {spotlights.map((spotlight) => (
                 <motion.div
-                  key={index}
+                  key={spotlight.title}
                   className="p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl"
                   variants={slideUp}
                 >
@@ -248,9 +289,9 @@ export default function Toolbox() {
               Repeatable solutions for complex problems. Strategic frameworks that demonstrate maturity and scalable thinking.
             </p>
             <div className="grid md:grid-cols-2 gap-8">
-              {toolboxData.playbooks && toolboxData.playbooks.map((playbook: any, index: number) => (
+              {playbooks.map((playbook) => (
                 <motion.div
-                  key={index}
+                  key={playbook.title}
                   className="p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl"
                   variants={slideUp}
                 >
@@ -264,8 +305,8 @@ export default function Toolbox() {
                     <div className="space-y-3">
                       <h4 className="text-sm font-semibold text-cyan-400 uppercase tracking-wide">Key Steps</h4>
                       <ul className="space-y-2">
-                        {playbook.steps.map((step: string, idx: number) => (
-                          <li key={idx} className="text-sm text-slate-400 flex items-start">
+                        {playbook.steps.map((step, index) => (
+                          <li key={`${playbook.title}-step-${index}`} className="text-sm text-slate-400 flex items-start">
                             <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
                             {step}
                           </li>

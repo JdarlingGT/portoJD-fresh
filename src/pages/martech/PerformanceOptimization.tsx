@@ -6,15 +6,15 @@ export default function PerformanceOptimization() {
   return (
     <main className="min-h-screen bg-[#0F0F0F] text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        
+
         {/* Back Navigation */}
-        <motion.div 
+        <motion.div
           className="mb-8"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Link 
+          <Link
             to="/martech"
             className="flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors"
           >
@@ -24,7 +24,7 @@ export default function PerformanceOptimization() {
         </motion.div>
 
         {/* Header */}
-        <motion.div 
+        <motion.div
           className="mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -39,9 +39,9 @@ export default function PerformanceOptimization() {
               <h1 className="text-4xl md:text-5xl font-bold">Full-Stack Performance Optimization</h1>
             </div>
           </div>
-          
+
           <p className="text-xl text-slate-300 leading-relaxed max-w-4xl">
-            Comprehensive optimization strategy delivering 70% faster repeat visits through multi-tier caching, 
+            Comprehensive optimization strategy delivering 70% faster repeat visits through multi-tier caching,
             advanced compression, and CDN architecture that dramatically improved Core Web Vitals.
           </p>
 
@@ -63,22 +63,22 @@ export default function PerformanceOptimization() {
 
         <div className="grid lg:grid-cols-[1fr_300px] gap-12">
           {/* Main Content */}
-          <motion.div 
+          <motion.div
             className="space-y-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            
+
             {/* The Why */}
             <section>
               <h2 className="text-2xl font-bold mb-6 text-yellow-400 border-b border-white/10 pb-3">
-                The "Why": The Business Case
+                  The &ldquo;Why&rdquo;: The Business Case
               </h2>
               <div className="p-6 bg-yellow-500/5 border border-yellow-500/20 rounded-xl">
                 <p className="text-slate-300 leading-relaxed mb-4">
-                  Heavy pages and an unoptimized asset pipeline were causing slow load times and poor Core Web Vitals. 
-                  This negatively impacted SEO rankings, increased bounce rates on landing pages, and created a frustrating 
+                  Heavy pages and an unoptimized asset pipeline were causing slow load times and poor Core Web Vitals.
+                  This negatively impacted SEO rankings, increased bounce rates on landing pages, and created a frustrating
                   user experience that hurt conversions.
                 </p>
                 <div className="flex items-center gap-2 text-yellow-400">
@@ -91,12 +91,12 @@ export default function PerformanceOptimization() {
             {/* The How */}
             <section>
               <h2 className="text-2xl font-bold mb-6 text-yellow-400 border-b border-white/10 pb-3">
-                The "How": My Strategic Approach
+                  The &ldquo;How&rdquo;: My Strategic Approach
               </h2>
               <p className="text-slate-300 leading-relaxed mb-6">
-                I implemented a comprehensive multi-tier caching strategy with advanced compression and CDN optimization. 
-                This included deploying LiteSpeed Cache with custom rules, enabling Brotli compression, optimizing image 
-                delivery through Cloudflare's Polish feature, and fine-tuning Core Web Vitals through strategic resource 
+                I implemented a comprehensive multi-tier caching strategy with advanced compression and CDN optimization.
+                This included deploying LiteSpeed Cache with custom rules, enabling Brotli compression, optimizing image
+                delivery through Cloudflare's Polish feature, and fine-tuning Core Web Vitals through strategic resource
                 prioritization and lazy loading.
               </p>
 
@@ -107,8 +107,8 @@ export default function PerformanceOptimization() {
                   Edge Optimization Pipeline
                 </h3>
                 <div className="bg-slate-900 border border-slate-700 rounded-lg p-6">
-                  <img 
-                    src="/assets/martech/edge-optimization-pipeline.png" 
+                  <img
+                    src="/assets/martech/edge-optimization-pipeline.png"
                     alt="Edge Image Optimization Pipeline showing the flow from Image Input through Optimization to Optimized Image"
                     className="w-full max-w-2xl mx-auto rounded-lg"
                   />
@@ -200,9 +200,9 @@ export default function PerformanceOptimization() {
               </h2>
               <div className="p-6 bg-orange-500/5 border border-orange-500/20 rounded-xl">
                 <p className="text-slate-300 leading-relaxed">
-                  The main challenge was orchestrating three distinct layers of caching (browser, LiteSpeed, and Cloudflare) 
-                  to work in harmony without serving stale content. This required fine-tuning cache-invalidation rules and 
-                  configuring Edge-Side Includes (ESI) to handle dynamic, user-specific content for logged-in users on 
+                  The main challenge was orchestrating three distinct layers of caching (browser, LiteSpeed, and Cloudflare)
+                  to work in harmony without serving stale content. This required fine-tuning cache-invalidation rules and
+                  configuring Edge-Side Includes (ESI) to handle dynamic, user-specific content for logged-in users on
                   otherwise fully cached pages.
                 </p>
               </div>
@@ -213,7 +213,7 @@ export default function PerformanceOptimization() {
               <h2 className="text-2xl font-bold mb-6 text-yellow-400 border-b border-white/10 pb-3">
                 The Outcome: Tangible Results
               </h2>
-              
+
               {/* Performance Clock Visualization */}
               <div className="mb-8 p-6 bg-white/5 border border-white/10 rounded-xl">
                 <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
@@ -221,8 +221,8 @@ export default function PerformanceOptimization() {
                   Performance Metrics Dashboard
                 </h3>
                 <div className="bg-slate-900 border border-slate-700 rounded-lg p-6">
-                  <img 
-                    src="/assets/tech-backgrounds/performance-clock.png" 
+                  <img
+                    src="/assets/tech-backgrounds/performance-clock.png"
                     alt="Performance optimization clock showing speed improvements and timing metrics"
                     className="w-full max-w-md mx-auto rounded-lg"
                   />
@@ -247,8 +247,8 @@ export default function PerformanceOptimization() {
                 </div>
               </div>
               <p className="text-slate-300 leading-relaxed mt-6">
-                Page load times dropped from 8+ seconds to under 2 seconds. Core Web Vitals scores improved to 90+, 
-                and bandwidth usage decreased by 70% through optimized compression and caching. The site now handles 
+                Page load times dropped from 8+ seconds to under 2 seconds. Core Web Vitals scores improved to 90+,
+                and bandwidth usage decreased by 70% through optimized compression and caching. The site now handles
                 traffic spikes without performance degradation.
               </p>
             </section>
@@ -260,9 +260,9 @@ export default function PerformanceOptimization() {
               </h2>
               <div className="p-6 bg-cyan-500/10 border border-cyan-500/20 rounded-xl">
                 <p className="text-slate-300 leading-relaxed">
-                  This project lowered infrastructure costs by reducing origin server requests, improved the effectiveness 
-                  of ad campaigns by speeding up landing pages, and positioned the site to handle high-traffic product 
-                  launches without performance degradation. The optimization framework is scalable and continues to 
+                  This project lowered infrastructure costs by reducing origin server requests, improved the effectiveness
+                  of ad campaigns by speeding up landing pages, and positioned the site to handle high-traffic product
+                  launches without performance degradation. The optimization framework is scalable and continues to
                   deliver value as traffic grows.
                 </p>
               </div>
@@ -270,7 +270,7 @@ export default function PerformanceOptimization() {
           </motion.div>
 
           {/* Sidebar */}
-          <motion.aside 
+          <motion.aside
             className="space-y-6"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}

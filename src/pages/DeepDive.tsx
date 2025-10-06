@@ -6,13 +6,16 @@ import fm from "front-matter";
 import { ArrowLeft, Clock, TrendingUp, ExternalLink, ChevronRight } from "lucide-react";
 import AnchorTOC from "../components/ui/AnchorTOC";
 import Breadcrumbs from "../components/ui/Breadcrumbs";
-import caseStudiesData from "../data/caseStudies.json";
+import rawCaseStudies from "../data/caseStudies.json";
+import type { CaseStudy, FrontMatterMetadata } from "../types/content";
 
-export default function DeepDive({ slug: propSlug }: { slug?: string }) {
+const caseStudiesData = rawCaseStudies as CaseStudy[];
+
+export default function DeepDive({ slug: propSlug }: Readonly<{ slug?: string }>) {
   const params = useParams<{ slug: string }>();
   const slug = propSlug ?? params.slug;
   const [html, setHtml] = useState("");
-  const [frontMatter, setFrontMatter] = useState<any>({});
+  const [frontMatter, setFrontMatter] = useState<FrontMatterMetadata>({});
 
   useEffect(() => {
     if (!slug) return;
@@ -23,9 +26,9 @@ export default function DeepDive({ slug: propSlug }: { slug?: string }) {
         if (!res.ok) {
           throw new Error(`Failed to fetch: ${res.status}`);
         }
-        const markdown = await res.text();
-        
-        const content: any = fm(markdown);
+  const markdown = await res.text();
+
+  const content = fm<FrontMatterMetadata>(markdown);
         setFrontMatter(content.attributes);
 
         const rawHtml = await marked.parse(content.body);
@@ -35,7 +38,7 @@ export default function DeepDive({ slug: propSlug }: { slug?: string }) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(rawHtml, 'text/html');
         const headings = doc.querySelectorAll('h2, h3');
-        
+
         headings.forEach((heading, i) => {
           const text = heading.textContent || '';
           heading.id = `${slugify(text)}-${i}`;
@@ -53,28 +56,28 @@ export default function DeepDive({ slug: propSlug }: { slug?: string }) {
   }, [slug]);
 
   // Find current case study data
-  const currentCaseStudy = caseStudiesData.find((cs: any) => cs.slug === slug);
-  
+  const currentCaseStudy = caseStudiesData.find((cs) => cs.slug === slug);
+
   // Get related case studies (same category, excluding current)
   const relatedCaseStudies = caseStudiesData
-    .filter((cs: any) => cs.category === currentCaseStudy?.category && cs.slug !== slug)
+    .filter((cs) => cs.category === currentCaseStudy?.category && cs.slug !== slug)
     .slice(0, 3);
 
   return (
     <main className="min-h-screen bg-[#0F0F0F] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        
+
         {/* Enhanced Header */}
-        <motion.div 
+        <motion.div
           className="mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           <Breadcrumbs />
-          
+
           <div className="flex items-center gap-4 mb-8 mt-8">
-            <Link 
+            <Link
               to="/case-studies"
               className="flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors"
             >
@@ -85,7 +88,7 @@ export default function DeepDive({ slug: propSlug }: { slug?: string }) {
 
           {frontMatter.title && (
             <div className="mb-8">
-              <motion.div 
+              <motion.div
                 className="inline-block px-4 py-2 bg-cyan-400/10 border border-cyan-400/20 rounded-full text-cyan-400 text-sm font-semibold mb-6"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -93,17 +96,17 @@ export default function DeepDive({ slug: propSlug }: { slug?: string }) {
               >
                 📖 Deep Dive Case Study
               </motion.div>
-              
+
               <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
                 {frontMatter.title}
               </h1>
-              
+
               {frontMatter.summary && (
                 <p className="text-xl text-slate-300 mb-6 leading-relaxed max-w-4xl">
                   {frontMatter.summary}
                 </p>
               )}
-              
+
               {/* Meta Information */}
               <div className="flex flex-wrap items-center gap-6 text-sm text-slate-400">
                 <div className="flex items-center gap-2">
@@ -128,20 +131,20 @@ export default function DeepDive({ slug: propSlug }: { slug?: string }) {
 
         <div className="grid lg:grid-cols-[1fr_280px] gap-12">
           {/* Main Content */}
-          <motion.article 
+          <motion.article
             className="prose prose-invert prose-lg max-w-none"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            <div 
+            <div
               className="deep-dive-content"
-              dangerouslySetInnerHTML={{ __html: html }} 
+              dangerouslySetInnerHTML={{ __html: html }}
             />
           </motion.article>
 
           {/* Sidebar */}
-          <motion.aside 
+          <motion.aside
             className="space-y-8"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -150,15 +153,15 @@ export default function DeepDive({ slug: propSlug }: { slug?: string }) {
             {/* Table of Contents */}
             <div className="sticky top-8">
               <AnchorTOC />
-              
+
               {/* Toolbox Links */}
               {currentCaseStudy?.details?.toolboxLinks && currentCaseStudy.details.toolboxLinks.length > 0 && (
                 <div className="mt-8 p-6 bg-gradient-to-br from-lime-500/10 to-green-600/10 border border-lime-500/20 rounded-xl">
                   <h3 className="text-lg font-bold mb-4 text-lime-400">Related Toolbox Items</h3>
                   <div className="space-y-3">
-                    {currentCaseStudy.details.toolboxLinks.map((toolboxItem: string, index: number) => (
+                    {currentCaseStudy.details.toolboxLinks.map((toolboxItem, index) => (
                       <Link
-                        key={index}
+                        key={`${toolboxItem}-${index}`}
                         to="/toolbox"
                         className="group block p-3 rounded-lg hover:bg-white/5 transition-colors"
                       >
@@ -187,7 +190,7 @@ export default function DeepDive({ slug: propSlug }: { slug?: string }) {
                 <div className="mt-8 p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl">
                   <h3 className="text-lg font-bold mb-4 text-cyan-400">Related Case Studies</h3>
                   <div className="space-y-3">
-                    {relatedCaseStudies.map((related: any) => (
+                    {relatedCaseStudies.map((related) => (
                       <Link
                         key={related.slug}
                         to={`/deep/${related.slug}`}

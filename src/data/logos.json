@@ -12,13 +12,13 @@
       "name": "React",
       "category": "dev",
       "src": "/assets/logos/react.svg",
-      "tooltip": "Used in: Graston Instructor Dashboard, Hep AI Interface"
+      "tooltip": "Used in: Graston Instructor Dashboard, Portfolio Interface"
     },
     {
       "name": "TypeScript",
       "category": "dev",
       "src": "/assets/logos/typescript.svg",
-      "tooltip": "Used in: Portfolio ecosystem, Hep AI development"
+      "tooltip": "Used in: Portfolio ecosystem, Web application development"
     },
     {
       "name": "Vite",

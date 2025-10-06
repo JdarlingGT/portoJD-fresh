@@ -1,53 +1,30 @@
-import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useMemo } from 'react';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import HepMetrics from '../utils/HepMetrics';
-import { 
+import {
   ArrowLeft, Clock, Target, Code2, Zap, CheckCircle,
-  Bot, Calendar, CreditCard, BarChart3, Workflow, 
+  Bot, Calendar, CreditCard, BarChart3, Workflow,
   Shield, Image, GitBranch
 } from 'lucide-react';
+import projectsJson from '../data/technical-projects.json';
+import type { TechnicalProjectsData, TechnicalProject } from '../types/content';
 
 const iconMap = {
   Bot, Calendar, CreditCard, BarChart3, Target, Workflow,
   Shield, Image, GitBranch
 };
 
-type ProjectData = typeof import('../data/technical-projects.json');
+const projectsData = projectsJson as TechnicalProjectsData;
 
 export default function ProjectDetail() {
   const { id } = useParams<{ id: string }>();
-  const [data, setData] = useState<ProjectData | null>(null);
-  const [project, setProject] = useState<any>(null);
-
-  useEffect(() => {
-    import('../data/technical-projects.json').then(m => {
-      const projectData = m as any;
-      setData(projectData);
-      const foundProject = projectData.projects.find((p: any) => p.id === id);
-      setProject(foundProject);
-    });
+  const project = useMemo<TechnicalProject | undefined>(() => {
+    if (!id) return undefined;
+    return projectsData.projects.find((entry) => entry.id === id);
   }, [id]);
 
-  useEffect(() => {
-    if (project?.id) {
-      HepMetrics.logEvent({
-        type: 'view_case_study',
-        id: project.id,
-        source: 'route'
-      });
-    }
-  }, [project]);
-
-  if (!data || !project) {
-    return (
-      <div className="min-h-screen bg-[#0F0F0F] text-white flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-400 mx-auto mb-4"></div>
-          <p className="text-slate-400">Loading project details...</p>
-        </div>
-      </div>
-    );
+  if (!project) {
+    return <Navigate to="/projects" replace />;
   }
 
   const IconComponent = iconMap[project.icon as keyof typeof iconMap] || Bot;
@@ -55,9 +32,9 @@ export default function ProjectDetail() {
   return (
     <main className="min-h-screen bg-[#0F0F0F] text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        
+
         {/* Back Navigation */}
-        <motion.div 
+        <motion.div
           className="mb-8"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -73,7 +50,7 @@ export default function ProjectDetail() {
         </motion.div>
 
         {/* Header */}
-        <motion.div 
+        <motion.div
           className="mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -108,7 +85,7 @@ export default function ProjectDetail() {
         <div className="grid lg:grid-cols-3 gap-12">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
-            
+
             {/* Why Section */}
             <motion.section
               initial={{ opacity: 0, y: 20 }}
@@ -149,9 +126,9 @@ export default function ProjectDetail() {
                 Technologies & Tools
               </h2>
               <div className="flex flex-wrap gap-3">
-                {project.technologies.map((tech: string, i: number) => (
+                {project.technologies.map((tech) => (
                   <span
-                    key={i}
+                    key={`${project.id}-${tech}`}
                     className="px-3 py-2 bg-purple-500/20 border border-purple-500/30 rounded-lg text-purple-300 font-medium"
                   >
                     {tech}
@@ -163,7 +140,7 @@ export default function ProjectDetail() {
 
           {/* Sidebar */}
           <div className="space-y-6">
-            
+
             {/* Project Stats */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
@@ -197,10 +174,10 @@ export default function ProjectDetail() {
             >
               <h3 className="text-lg font-bold mb-4">Related Projects</h3>
               <div className="space-y-3">
-                {data.projects
-                  .filter((p: any) => p.id !== project.id && p.category === project.category)
+                {projectsData.projects
+                  .filter((candidate) => candidate.id !== project.id && candidate.category === project.category)
                   .slice(0, 3)
-                  .map((relatedProject: any) => {
+                  .map((relatedProject) => {
                     const RelatedIcon = iconMap[relatedProject.icon as keyof typeof iconMap] || Bot;
                     return (
                       <Link

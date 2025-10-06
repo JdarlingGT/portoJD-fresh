@@ -62,6 +62,9 @@ const Hero: React.FC = () => {
         },
       });
     }
+
+    const tl = gsap.timeline();
+    tl.from('.hero-text', { opacity: 0, y: 30, stagger: 0.2, duration: 1, ease: 'power3.out' });
   }, []);
 
   return (
@@ -77,13 +80,13 @@ const Hero: React.FC = () => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut", delay: hasAnimated ? 0 : 0.5 }}
         />
-        <h1 ref={titleRef} className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-6xl mb-6">
+        <h1 ref={titleRef} className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-6xl mb-6 hero-text">
           Jacob Darling — Brand Strategist & Marketing Architect
         </h1>
-        <p ref={subtitleRef} className="mx-auto mt-4 max-w-3xl text-lg text-gray-600 dark:text-gray-300 opacity-90 mb-6">
+        <p ref={subtitleRef} className="mx-auto mt-4 max-w-3xl text-lg text-gray-600 dark:text-gray-300 opacity-90 mb-6 hero-text">
           I connect creative vision with technical precision to build marketing ecosystems that scale.
         </p>
-        <div ref={focusRef} className="mt-6 text-sm uppercase tracking-widest text-gray-500 dark:text-gray-400 opacity-80 mb-10">
+        <div ref={focusRef} className="mt-6 text-sm uppercase tracking-widest text-gray-500 dark:text-gray-400 opacity-80 mb-10 hero-text">
           <span>Focus:&nbsp;</span>
           <span className="inline-block min-w-[10ch] animate-in fade-in-50 text-cyan-600 dark:text-cyan-400 font-medium">
             {words[i]}

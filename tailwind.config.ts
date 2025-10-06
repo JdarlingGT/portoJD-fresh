@@ -18,6 +18,14 @@ export default {
     },
     extend: {
       colors: {
+        // IU-Inspired AdobeColor Palette
+        iu: {
+          crimson: '#E63946',
+          white: '#F1FAEE',
+          aqua: '#A8DADC',
+          slate: '#457B9D',
+          navy: '#1D3557',
+        },
         // New Brand Colors
         primary: {
           50: '#eff6ff',

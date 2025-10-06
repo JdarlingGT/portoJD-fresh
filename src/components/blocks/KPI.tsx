@@ -1,6 +1,6 @@
-type KPIProps = { label: string; value: string; note?: string };
+type KpiProps = { label: string; value: string; note?: string };
 
-export default function KPI({ label, value, note }: KPIProps) {
+export default function Kpi({ label, value, note }: KpiProps) {
   return (
     <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
       <div className="text-2xl font-extrabold">{value}</div>

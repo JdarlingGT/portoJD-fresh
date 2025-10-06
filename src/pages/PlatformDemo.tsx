@@ -5,12 +5,14 @@ const DEMO_URL = "https://dazzling-tiger-zoom.vercel.app/"; // external demo
 
 export default function PlatformDemo() {
   const [unlocked, setUnlocked] = useState(false);
-  
+
   useEffect(() => {
     try {
       const gate = localStorage.getItem("demo_contact");
       if (gate) setUnlocked(true);
-    } catch {}
+    } catch (error) {
+      console.warn("Unable to read demo contact gate state", error);
+    }
   }, []);
 
   return (

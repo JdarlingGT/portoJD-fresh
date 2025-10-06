@@ -1,39 +1,87 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { slideUp } from '../styles/animations';
 
 const Gallery: React.FC = () => {
-  // Replace with your actual Lightroom album embed URL
-  const ALBUM_EMBED_URL = 'https://www.lightroom.com/embed/shares/...'; // Replace with your embed URL
-
   return (
-    <div className="min-h-screen bg-[#0F0F0F] text-white">
-      <motion.div
-        className="pt-32 pb-20 px-6"
-        variants={slideUp}
-        initial="hidden"
-        animate="show"
-      >
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-              Design Gallery
-            </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              A curated collection of my design work, from branding to UI/UX projects.
-            </p>
-          </div>
-
-          <div className="bg-black/20 rounded-2xl p-8 backdrop-blur-sm">
-            <iframe
-              src={ALBUM_EMBED_URL}
-              className="w-full h-[600px] rounded-xl border-0"
-              title="Design Gallery"
-              allowFullScreen
-            />
-          </div>
+    <div className="gallery-container">
+      <h1>Gallery</h1>
+      <p className="text-gray-500 mb-4">Explore our curated collection of images showcasing our latest projects and designs. Each image tells a story of creativity and innovation.</p>
+      <div className='lr_embed' style={{ position: 'relative', paddingBottom: '50%', height: 0, overflow: 'hidden' }}>
+        <p className="text-sm text-center text-gray-400 mt-2">Hover over the images for more details.</p>
+        <iframe
+          id='iframe'
+          src='https://lightroom.adobe.com/embed/shares/b1f8050aa3ac452baae9e3590e1c92c8/slideshow?background_color=%232D2D2D&color=%23999999'
+          frameBorder='0'
+          style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}
+        ></iframe>
+      </div>
+      <div className="video-gallery mt-8">
+        <h2 className="text-2xl font-bold mb-4">Video Gallery</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <iframe
+            width="100%"
+            height="315"
+            src="https://www.youtube.com/embed/K6kco8-OZO0"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+          <iframe
+            width="100%"
+            height="315"
+            src="https://www.youtube.com/embed/B67k_ybXjMk"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+          <iframe
+            width="100%"
+            height="315"
+            src="https://www.youtube.com/embed/Qg1qPvO23bw"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+          <iframe
+            width="100%"
+            height="315"
+            src="https://www.youtube.com/embed/4cFQu1b_HZY"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+          <iframe
+            width="100%"
+            height="315"
+            src="https://www.youtube.com/embed/RfkVYOZR1Ao"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+          <iframe
+            width="100%"
+            height="315"
+            src="https://www.youtube.com/embed/2qKhmvxeUg4"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+          <iframe
+            width="100%"
+            height="315"
+            src="https://www.youtube.com/embed/CGUT9tQvj7Y"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };
