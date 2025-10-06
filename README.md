@@ -45,8 +45,12 @@ This repository contains the source code for my personal portfolio website, buil
 
    ```bash
    cp .env.example .env
-   # Edit .env and add your OpenAI API key
+   # Edit .env and add your OpenAI API key and analytics settings
    ```
+
+   | Variable     | Description                                 |
+   | ------------ | ------------------------------------------- |
+   | `VITE_GA_ID` | Optional Google Analytics measurement ID.   |
 
 4. Start the development servers:
 
@@ -77,7 +81,8 @@ To enable Hep AI:
 
 1. Get an OpenAI API key from [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
 2. Add it to your `.env` file:
-   ```
+
+   ```bash
    OPENAI_API_KEY=your_api_key_here
    ```
 
@@ -91,7 +96,7 @@ To enable Hep AI:
 
 ## Project Structure
 
-```
+```text
 src/
 ├── components/          # Reusable UI components
 │   ├── layout/         # Header, Footer, Navigation

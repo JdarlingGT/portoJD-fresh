@@ -47,6 +47,22 @@ export default function About() {
               "86% cache hit rate",
               "Unified data pipeline (web → LMS → CRM → analytics)"
             ]} />
+
+            {/* Profile Images */}
+            <div className="flex flex-wrap gap-6 mt-6">
+              <motion.img
+                src="/assets/personal/profile1.png"
+                alt="Profile Picture 1"
+                className="rounded-lg shadow-lg w-48 h-auto"
+                variants={fadeIn}
+              />
+              <motion.img
+                src="/assets/personal/profile2.png"
+                alt="Profile Picture 2"
+                className="rounded-lg shadow-lg w-48 h-auto"
+                variants={fadeIn}
+              />
+            </div>
           </motion.div>
         </div>
       </section>

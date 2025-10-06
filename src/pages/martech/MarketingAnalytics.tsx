@@ -6,15 +6,15 @@ export default function MarketingAnalytics() {
   return (
     <main className="min-h-screen bg-[#0F0F0F] text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        
+
         {/* Back Navigation */}
-        <motion.div 
+        <motion.div
           className="mb-8"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Link 
+          <Link
             to="/martech"
             className="flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors"
           >
@@ -24,7 +24,7 @@ export default function MarketingAnalytics() {
         </motion.div>
 
         {/* Header */}
-        <motion.div 
+        <motion.div
           className="mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -39,9 +39,9 @@ export default function MarketingAnalytics() {
               <h1 className="text-4xl md:text-5xl font-bold">Unified Marketing Analytics Stack</h1>
             </div>
           </div>
-          
+
           <p className="text-xl text-slate-300 leading-relaxed max-w-4xl">
-            Complete analytics rebuild creating a single source of truth for conversion data, eliminating attribution drift, 
+            Complete analytics rebuild creating a single source of truth for conversion data, eliminating attribution drift,
             and enabling Smart Bidding optimization with accurate, high-quality signals.
           </p>
 
@@ -63,22 +63,22 @@ export default function MarketingAnalytics() {
 
         <div className="grid lg:grid-cols-[1fr_300px] gap-12">
           {/* Main Content */}
-          <motion.div 
+          <motion.div
             className="space-y-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            
+
             {/* The Why */}
             <section>
               <h2 className="text-2xl font-bold mb-6 text-blue-400 border-b border-white/10 pb-3">
-                The "Why": The Business Case
+                  The &ldquo;Why&rdquo;: The Business Case
               </h2>
               <div className="p-6 bg-blue-500/5 border border-blue-500/20 rounded-xl">
                 <p className="text-slate-300 leading-relaxed mb-4">
-                  The company's analytics were fragmented and unreliable, leading to attribution drift and wasted ad spend. 
-                  Without a single source of truth for conversion data, it was impossible to make confident, data-driven 
+                  The company's analytics were fragmented and unreliable, leading to attribution drift and wasted ad spend.
+                  Without a single source of truth for conversion data, it was impossible to make confident, data-driven
                   decisions about marketing budgets.
                 </p>
                 <div className="flex items-center gap-2 text-blue-400">
@@ -91,12 +91,12 @@ export default function MarketingAnalytics() {
             {/* The How */}
             <section>
               <h2 className="text-2xl font-bold mb-6 text-blue-400 border-b border-white/10 pb-3">
-                The "How": My Strategic Approach
+             The &ldquo;How&rdquo;: My Strategic Approach
               </h2>
               <p className="text-slate-300 leading-relaxed mb-6">
-                I conducted a comprehensive audit of all tracking implementations, then systematically cleaned up GTM 
-                containers, consolidated GA4 properties, and rebuilt attribution models from the ground up. This included 
-                implementing server-side tracking, cross-domain measurement, and custom event architectures for accurate 
+                I conducted a comprehensive audit of all tracking implementations, then systematically cleaned up GTM
+                containers, consolidated GA4 properties, and rebuilt attribution models from the ground up. This included
+                implementing server-side tracking, cross-domain measurement, and custom event architectures for accurate
                 multi-channel attribution.
               </p>
 
@@ -107,8 +107,8 @@ export default function MarketingAnalytics() {
                   Analytics Command Center
                 </h3>
                 <div className="bg-slate-900 border border-slate-700 rounded-lg p-6">
-                  <img 
-                    src="/assets/tech-backgrounds/hud-interface.png" 
+                  <img
+                    src="/assets/tech-backgrounds/hud-interface.png"
                     alt="Futuristic HUD interface showing analytics monitoring and data visualization elements"
                     className="w-full max-w-2xl mx-auto rounded-lg"
                   />
@@ -200,9 +200,9 @@ export default function MarketingAnalytics() {
               </h2>
               <div className="p-6 bg-orange-500/5 border border-orange-500/20 rounded-xl">
                 <p className="text-slate-300 leading-relaxed">
-                  The difficulty lay in untangling years of legacy tags and triggers from multiple stakeholders without 
-                  losing valuable data during the transition. It required a meticulous migration plan to ensure that the 
-                  new, cleaner GTM container could be deployed seamlessly while maintaining data integrity and historical 
+                  The difficulty lay in untangling years of legacy tags and triggers from multiple stakeholders without
+                  losing valuable data during the transition. It required a meticulous migration plan to ensure that the
+                  new, cleaner GTM container could be deployed seamlessly while maintaining data integrity and historical
                   continuity for reporting.
                 </p>
               </div>
@@ -213,7 +213,7 @@ export default function MarketingAnalytics() {
               <h2 className="text-2xl font-bold mb-6 text-blue-400 border-b border-white/10 pb-3">
                 The Outcome: Tangible Results
               </h2>
-              
+
               {/* Analytics Dashboard Visualization */}
               <div className="mb-8 p-6 bg-white/5 border border-white/10 rounded-xl">
                 <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
@@ -221,8 +221,8 @@ export default function MarketingAnalytics() {
                   Unified Analytics Dashboard
                 </h3>
                 <div className="bg-slate-900 border border-slate-700 rounded-lg p-6">
-                  <img 
-                    src="/assets/martech/provider-analytics-dashboard.png" 
+                  <img
+                    src="/assets/martech/provider-analytics-dashboard.png"
                     alt="Provider Directory & Analytics Dashboard showing profile views, engagement rates, and top referrers"
                     className="w-full max-w-4xl mx-auto rounded-lg"
                   />
@@ -247,8 +247,8 @@ export default function MarketingAnalytics() {
                 </div>
               </div>
               <p className="text-slate-300 leading-relaxed mt-6">
-                Marketing teams now have clean, accurate data flowing into consolidated dashboards. Attribution is reliable 
-                across all channels, and reporting time has been cut by more than half. The unified analytics stack provides 
+                Marketing teams now have clean, accurate data flowing into consolidated dashboards. Attribution is reliable
+                across all channels, and reporting time has been cut by more than half. The unified analytics stack provides
                 a single source of truth for all marketing performance metrics.
               </p>
             </section>
@@ -260,9 +260,9 @@ export default function MarketingAnalytics() {
               </h2>
               <div className="p-6 bg-cyan-500/10 border border-cyan-500/20 rounded-xl">
                 <p className="text-slate-300 leading-relaxed">
-                  The long-term value is a significant improvement in marketing efficiency. More accurate attribution leads 
-                  to a lower Cost Per Acquisition (CPA), a higher return on ad spend (ROAS), and the ability to report on 
-                  marketing performance with confidence. The unified data foundation enables advanced analytics and machine 
+                  The long-term value is a significant improvement in marketing efficiency. More accurate attribution leads
+                  to a lower Cost Per Acquisition (CPA), a higher return on ad spend (ROAS), and the ability to report on
+                  marketing performance with confidence. The unified data foundation enables advanced analytics and machine
                   learning optimization.
                 </p>
               </div>
@@ -270,7 +270,7 @@ export default function MarketingAnalytics() {
           </motion.div>
 
           {/* Sidebar */}
-          <motion.aside 
+          <motion.aside
             className="space-y-6"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}

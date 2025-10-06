@@ -6,15 +6,15 @@ export default function BackendReliability() {
   return (
     <main className="min-h-screen bg-[#0F0F0F] text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        
+
         {/* Back Navigation */}
-        <motion.div 
+        <motion.div
           className="mb-8"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Link 
+          <Link
             to="/martech"
             className="flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors"
           >
@@ -24,7 +24,7 @@ export default function BackendReliability() {
         </motion.div>
 
         {/* Header */}
-        <motion.div 
+        <motion.div
           className="mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -39,9 +39,9 @@ export default function BackendReliability() {
               <h1 className="text-4xl md:text-5xl font-bold">Backend Reliability & Server Tuning</h1>
             </div>
           </div>
-          
+
           <p className="text-xl text-slate-300 leading-relaxed max-w-4xl">
-            Deep server-level optimization eliminating critical 503/504 errors and PHP memory exhaustion through 
+            Deep server-level optimization eliminating critical 503/504 errors and PHP memory exhaustion through
             strategic PHP-FPM tuning, Apache configuration, and real-time monitoring infrastructure.
           </p>
 
@@ -63,21 +63,21 @@ export default function BackendReliability() {
 
         <div className="grid lg:grid-cols-[1fr_300px] gap-12">
           {/* Main Content */}
-          <motion.div 
+          <motion.div
             className="space-y-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            
+
             {/* The Why */}
             <section>
               <h2 className="text-2xl font-bold mb-6 text-slate-400 border-b border-white/10 pb-3">
-                The "Why": The Business Case
+                The &ldquo;Why&rdquo;: The Business Case
               </h2>
               <div className="p-6 bg-slate-500/5 border border-slate-500/20 rounded-xl">
                 <p className="text-slate-300 leading-relaxed mb-4">
-                  The backend was plagued by frequent 503/504 errors and PHP memory exhaustion. These failures were crashing 
+                  The backend was plagued by frequent 503/504 errors and PHP memory exhaustion. These failures were crashing
                   key plugins during business hours, interrupting internal workflows, and putting marketing campaigns at risk.
                 </p>
                 <div className="flex items-center gap-2 text-slate-400">
@@ -90,12 +90,12 @@ export default function BackendReliability() {
             {/* The How */}
             <section>
               <h2 className="text-2xl font-bold mb-6 text-slate-400 border-b border-white/10 pb-3">
-                The "How": My Strategic Approach
+                The &ldquo;How&rdquo;: My Strategic Approach
               </h2>
               <p className="text-slate-300 leading-relaxed mb-6">
-                I conducted a deep, server-level optimization to address the root causes of instability. This included 
-                increasing PHP-FPM memory pools to 1024 MB, tuning Apache's LimitRequestLine to resolve plugin errors, 
-                upgrading the staging environment to PHP 8.3, and installing a real-time Netdata monitoring dashboard 
+                I conducted a deep, server-level optimization to address the root causes of instability. This included
+                increasing PHP-FPM memory pools to 1024 MB, tuning Apache's LimitRequestLine to resolve plugin errors,
+                upgrading the staging environment to PHP 8.3, and installing a real-time Netdata monitoring dashboard
                 with custom alerts.
               </p>
 
@@ -106,8 +106,8 @@ export default function BackendReliability() {
                   Backend Infrastructure Architecture
                 </h3>
                 <div className="bg-slate-900 border border-slate-700 rounded-lg p-6">
-                  <img 
-                    src="/assets/tech-backgrounds/molecular-tech.png" 
+                  <img
+                    src="/assets/tech-backgrounds/molecular-tech.png"
                     alt="Molecular technology structure showing backend infrastructure connections and network architecture"
                     className="w-full max-w-2xl mx-auto rounded-lg"
                   />
@@ -116,7 +116,7 @@ export default function BackendReliability() {
                   Complex backend infrastructure showing interconnected systems and optimized network architecture
                 </p>
               </div>
-              
+
               <div className="grid gap-6">
                 <div className="p-6 bg-white/5 border border-white/10 rounded-xl">
                   <div className="flex items-center gap-3 mb-4">
@@ -204,9 +204,9 @@ export default function BackendReliability() {
               </h2>
               <div className="p-6 bg-orange-500/5 border border-orange-500/20 rounded-xl">
                 <p className="text-slate-300 leading-relaxed">
-                  The main difficulty was diagnosing intermittent, hard-to-reproduce errors that only occurred under heavy load. 
-                  This required live monitoring and analysis to pinpoint the exact processes causing memory spikes and timeouts. 
-                  The challenge was implementing fixes on a production system without causing downtime while ensuring the 
+                  The main difficulty was diagnosing intermittent, hard-to-reproduce errors that only occurred under heavy load.
+                  This required live monitoring and analysis to pinpoint the exact processes causing memory spikes and timeouts.
+                  The challenge was implementing fixes on a production system without causing downtime while ensuring the
                   changes would handle peak traffic scenarios.
                 </p>
               </div>
@@ -232,8 +232,8 @@ export default function BackendReliability() {
                 </div>
               </div>
               <p className="text-slate-300 leading-relaxed mt-6">
-                Critical backend errors were eliminated, restoring stability for all admin operations. The platform can now 
-                handle heavy tasks without the risk of random timeouts or crashes. Real-time monitoring provides immediate 
+                Critical backend errors were eliminated, restoring stability for all admin operations. The platform can now
+                handle heavy tasks without the risk of random timeouts or crashes. Real-time monitoring provides immediate
                 visibility into system health.
               </p>
             </section>
@@ -245,8 +245,8 @@ export default function BackendReliability() {
               </h2>
               <div className="p-6 bg-cyan-500/10 border border-cyan-500/20 rounded-xl">
                 <p className="text-slate-300 leading-relaxed">
-                  The project ensures backend reliability, which leads to higher staff productivity and significantly reduces 
-                  the risk of downtime during sales pushes or high-traffic training events. The monitoring infrastructure 
+                  The project ensures backend reliability, which leads to higher staff productivity and significantly reduces
+                  the risk of downtime during sales pushes or high-traffic training events. The monitoring infrastructure
                   provides early warning of potential issues, enabling proactive maintenance and preventing costly outages.
                 </p>
               </div>
@@ -254,7 +254,7 @@ export default function BackendReliability() {
           </motion.div>
 
           {/* Sidebar */}
-          <motion.aside 
+          <motion.aside
             className="space-y-6"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}

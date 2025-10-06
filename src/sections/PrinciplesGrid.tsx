@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { GitBranch, CircuitBoard, Gauge, Users } from "lucide-react";
 import data from "../data/about.json";
+import type { PrincipleItem } from "../types/content";
 
 const iconMap = {
   Bridge: GitBranch,
@@ -9,19 +10,21 @@ const iconMap = {
   Users
 };
 
+const principles = (data.principles ?? []) as PrincipleItem[];
+
 export default function PrinciplesGrid() {
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      {data.principles.map((principle: any, i: number) => {
+      {principles.map((principle, index) => {
         const IconComponent = iconMap[principle.icon as keyof typeof iconMap];
-        
+
         return (
           <motion.div
-            key={i}
+            key={principle.title}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
+            transition={{ delay: index * 0.1 }}
             whileHover={{ y: -4 }}
             className="rounded-2xl bg-white/5 border border-white/10 p-6 hover:bg-white/[0.08] hover:ring-1 hover:ring-cyan-500/20 transition-all duration-300"
           >

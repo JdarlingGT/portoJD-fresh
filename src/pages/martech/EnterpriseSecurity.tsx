@@ -6,15 +6,15 @@ export default function EnterpriseSecurity() {
   return (
     <main className="min-h-screen bg-[#0F0F0F] text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        
+
         {/* Back Navigation */}
-        <motion.div 
+        <motion.div
           className="mb-8"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Link 
+          <Link
             to="/martech"
             className="flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors"
           >
@@ -24,7 +24,7 @@ export default function EnterpriseSecurity() {
         </motion.div>
 
         {/* Header */}
-        <motion.div 
+        <motion.div
           className="mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -39,9 +39,9 @@ export default function EnterpriseSecurity() {
               <h1 className="text-4xl md:text-5xl font-bold">Enterprise-Grade Security Overhaul</h1>
             </div>
           </div>
-          
+
           <p className="text-xl text-slate-300 leading-relaxed max-w-4xl">
-            Multi-layered "defense-in-depth" strategy that eliminated 85,000+ malicious attacks monthly 
+            Multi-layered &ldquo;defense-in-depth&rdquo; strategy that eliminated 85,000+ malicious attacks monthly
             while maintaining seamless user experience for legitimate traffic.
           </p>
 
@@ -63,22 +63,22 @@ export default function EnterpriseSecurity() {
 
         <div className="grid lg:grid-cols-[1fr_300px] gap-12">
           {/* Main Content */}
-          <motion.div 
+          <motion.div
             className="space-y-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            
+
             {/* The Why */}
             <section>
               <h2 className="text-2xl font-bold mb-6 text-red-400 border-b border-white/10 pb-3">
-                The "Why": The Business Case
+                The &ldquo;Why&rdquo;: The Business Case
               </h2>
               <div className="p-6 bg-red-500/5 border border-red-500/20 rounded-xl">
                 <p className="text-slate-300 leading-relaxed mb-4">
-                  The site was under constant siege from brute-force attacks and malicious bots. This activity inflated server load, 
-                  threatened sensitive user data, and risked damaging the brand's credibility, especially during critical marketing 
+                  The site was under constant siege from brute-force attacks and malicious bots. This activity inflated server load,
+                  threatened sensitive user data, and risked damaging the brand's credibility, especially during critical marketing
                   campaigns when uptime and trust are paramount.
                 </p>
                 <div className="flex items-center gap-2 text-red-400">
@@ -91,13 +91,13 @@ export default function EnterpriseSecurity() {
             {/* The How */}
             <section>
               <h2 className="text-2xl font-bold mb-6 text-red-400 border-b border-white/10 pb-3">
-                The "How": My Strategic Approach
+                The &ldquo;How&rdquo;: My Strategic Approach
               </h2>
               <p className="text-slate-300 leading-relaxed mb-6">
-                I architected a multi-layered "defense-in-depth" strategy that hardened the platform from the network edge 
+                I architected a multi-layered &ldquo;defense-in-depth&rdquo; strategy that hardened the platform from the network edge
                 to the origin server. The plan involved:
               </p>
-              
+
               <div className="grid gap-6">
                 <div className="p-6 bg-white/5 border border-white/10 rounded-xl">
                   <div className="flex items-center gap-3 mb-4">
@@ -165,9 +165,9 @@ export default function EnterpriseSecurity() {
               </h2>
               <div className="p-6 bg-yellow-500/5 border border-yellow-500/20 rounded-xl">
                 <p className="text-slate-300 leading-relaxed">
-                  The primary difficulty was implementing these comprehensive changes on a live, high-traffic site without 
-                  disrupting legitimate user activity or breaking critical integrations. This required careful rule deployment, 
-                  coordination of DNS changes with the domain registrar, and testing to ensure that our security posture 
+                  The primary difficulty was implementing these comprehensive changes on a live, high-traffic site without
+                  disrupting legitimate user activity or breaking critical integrations. This required careful rule deployment,
+                  coordination of DNS changes with the domain registrar, and testing to ensure that our security posture
                   didn't inadvertently block paying customers or essential services.
                 </p>
               </div>
@@ -178,7 +178,7 @@ export default function EnterpriseSecurity() {
               <h2 className="text-2xl font-bold mb-6 text-red-400 border-b border-white/10 pb-3">
                 The Outcome: Tangible Results
               </h2>
-              
+
               {/* Binary Code Flow Visualization */}
               <div className="mb-8 p-6 bg-white/5 border border-white/10 rounded-xl">
                 <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
@@ -186,8 +186,8 @@ export default function EnterpriseSecurity() {
                   Security Data Stream Analysis
                 </h3>
                 <div className="bg-slate-900 border border-slate-700 rounded-lg p-6">
-                  <img 
-                    src="/assets/tech-backgrounds/binary-code-flow.png" 
+                  <img
+                    src="/assets/tech-backgrounds/binary-code-flow.png"
                     alt="Binary code flow visualization showing security data streams and threat detection patterns"
                     className="w-full max-w-3xl mx-auto rounded-lg"
                   />
@@ -212,8 +212,8 @@ export default function EnterpriseSecurity() {
                 </div>
               </div>
               <p className="text-slate-300 leading-relaxed mt-6">
-                The multi-layered security approach successfully eliminated all security incidents while maintaining 
-                100% uptime. The system now automatically blocks 85,000+ malicious requests monthly, protecting 
+                The multi-layered security approach successfully eliminated all security incidents while maintaining
+                100% uptime. The system now automatically blocks 85,000+ malicious requests monthly, protecting
                 sensitive user data and maintaining business continuity.
               </p>
             </section>
@@ -225,8 +225,8 @@ export default function EnterpriseSecurity() {
               </h2>
               <div className="p-6 bg-cyan-500/10 border border-cyan-500/20 rounded-xl">
                 <p className="text-slate-300 leading-relaxed">
-                  The project established a resilient, long-term security posture that protects user data, boosts customer trust, 
-                  and de-risks high-traffic marketing launches by ensuring platform stability and reliability. The automated 
+                  The project established a resilient, long-term security posture that protects user data, boosts customer trust,
+                  and de-risks high-traffic marketing launches by ensuring platform stability and reliability. The automated
                   threat detection and blocking capabilities provide ongoing protection with minimal maintenance overhead.
                 </p>
               </div>
@@ -234,7 +234,7 @@ export default function EnterpriseSecurity() {
           </motion.div>
 
           {/* Sidebar */}
-          <motion.aside 
+          <motion.aside
             className="space-y-6"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}

@@ -1,40 +1,33 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Code2, Sparkles } from 'lucide-react';
 import ProjectCard from '../components/blocks/ProjectCard';
 import ProjectFilter from '../components/blocks/ProjectFilter';
+import projectsJson from '../data/technical-projects.json';
+import type { TechnicalProjectsData } from '../types/content';
 
-type ProjectData = typeof import('../data/technical-projects.json');
+const projectsData = projectsJson as TechnicalProjectsData;
 
 export default function Projects() {
-  const [data, setData] = useState<ProjectData | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All Projects');
 
-  useEffect(() => {
-    import('../data/technical-projects.json').then(m => setData(m as any));
-  }, []);
-
   const filteredProjects = useMemo(() => {
-    if (!data) return [];
-    
-    return data.projects.filter(project => {
+    return projectsData.projects.filter(project => {
       const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            project.tagline.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            project.category.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = selectedCategory === 'All Projects' || project.category === selectedCategory;
       return matchesSearch && matchesCategory;
     });
-  }, [data, searchTerm, selectedCategory]);
-
-  if (!data) return null;
+  }, [searchTerm, selectedCategory]);
 
   return (
     <main className="min-h-screen bg-[#0F0F0F] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        
+
         {/* Hero Section */}
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -48,30 +41,30 @@ export default function Projects() {
             <Sparkles className="w-8 h-8 text-cyan-400" />
           </div>
           <p className="text-xl text-slate-300 leading-relaxed max-w-4xl mx-auto mb-8">
-            A comprehensive collection of technical solutions I've architected and built—from AI-powered 
-            automation systems to enterprise-grade security infrastructure. Each project solved real business 
+            A comprehensive collection of technical solutions I've architected and built—from AI-powered
+            automation systems to enterprise-grade security infrastructure. Each project solved real business
             challenges and delivered measurable impact.
           </p>
-          
+
           {/* Stats */}
           <div className="flex justify-center gap-8 mb-8">
             <div className="text-center">
-              <div className="text-3xl font-bold text-cyan-400">{data.stats.totalProjects}</div>
+              <div className="text-3xl font-bold text-cyan-400">{projectsData.stats.totalProjects}</div>
               <div className="text-sm text-slate-400">Projects Delivered</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-cyan-400">{data.stats.totalImpact}</div>
+              <div className="text-3xl font-bold text-cyan-400">{projectsData.stats.totalImpact}</div>
               <div className="text-sm text-slate-400">Users Impacted</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-cyan-400">{data.stats.technologies}+</div>
+              <div className="text-3xl font-bold text-cyan-400">{projectsData.stats.technologies}+</div>
               <div className="text-sm text-slate-400">Technologies Used</div>
             </div>
           </div>
         </motion.div>
 
         {/* Search */}
-        <motion.div 
+        <motion.div
           className="max-w-2xl mx-auto mb-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -96,14 +89,14 @@ export default function Projects() {
           transition={{ delay: 0.3 }}
         >
           <ProjectFilter
-            categories={data.categories}
+            categories={projectsData.categories}
             activeCategory={selectedCategory}
             onCategoryChange={setSelectedCategory}
           />
         </motion.div>
 
         {/* Projects Grid */}
-        <motion.div 
+        <motion.div
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -120,7 +113,7 @@ export default function Projects() {
 
         {/* No Results */}
         {filteredProjects.length === 0 && (
-          <motion.div 
+          <motion.div
             className="text-center py-16"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -134,7 +127,7 @@ export default function Projects() {
         )}
 
         {/* CTA Section */}
-        <motion.div 
+        <motion.div
           className="text-center mt-16 p-8 bg-gradient-to-r from-cyan-500/10 to-blue-600/10 border border-cyan-500/20 rounded-2xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -142,7 +135,7 @@ export default function Projects() {
         >
           <h3 className="text-2xl font-bold mb-4">Ready to Build Something Amazing?</h3>
           <p className="text-slate-300 mb-6 max-w-2xl mx-auto">
-            These projects represent just a fraction of what's possible when technical expertise 
+            These projects represent just a fraction of what's possible when technical expertise
             meets strategic thinking. Let's discuss how I can help solve your next challenge.
           </p>
           <a

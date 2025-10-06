@@ -28,6 +28,7 @@
     "framer-motion": "^11.18.2",
     "front-matter": "^4.0.2",
     "gsap": "^3.13.0",
+    "lottie-react": "^2.4.1",
     "lucide-react": "^0.417.0",
     "marked": "^13.0.2",
     "minisearch": "^6.3.0",

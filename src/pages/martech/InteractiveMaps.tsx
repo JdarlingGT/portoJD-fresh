@@ -6,15 +6,15 @@ export default function InteractiveMaps() {
   return (
     <main className="min-h-screen bg-[#0F0F0F] text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        
+
         {/* Back Navigation */}
-        <motion.div 
+        <motion.div
           className="mb-8"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Link 
+          <Link
             to="/martech"
             className="flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors"
           >
@@ -24,7 +24,7 @@ export default function InteractiveMaps() {
         </motion.div>
 
         {/* Header */}
-        <motion.div 
+        <motion.div
           className="mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -39,9 +39,9 @@ export default function InteractiveMaps() {
               <h1 className="text-4xl md:text-5xl font-bold">Dynamic & Interactive Event Maps</h1>
             </div>
           </div>
-          
+
           <p className="text-xl text-slate-300 leading-relaxed max-w-4xl">
-            Modern, interactive Google Maps integration replacing static event listings with visual discovery, 
+            Modern, interactive Google Maps integration replacing static event listings with visual discovery,
             real-time filtering, and intuitive location-based browsing that significantly increased engagement and signups.
           </p>
 
@@ -63,21 +63,21 @@ export default function InteractiveMaps() {
 
         <div className="grid lg:grid-cols-[1fr_300px] gap-12">
           {/* Main Content */}
-          <motion.div 
+          <motion.div
             className="space-y-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            
+
             {/* The Why */}
             <section>
               <h2 className="text-2xl font-bold mb-6 text-purple-400 border-b border-white/10 pb-3">
-                The "Why": The Business Case
+                  The &ldquo;Why&rdquo;: The Business Case
               </h2>
               <div className="p-6 bg-purple-500/5 border border-purple-500/20 rounded-xl">
                 <p className="text-slate-300 leading-relaxed mb-4">
-                  The training event directory was a static, text-heavy list that was frustrating for clinicians to navigate. 
+                  The training event directory was a static, text-heavy list that was frustrating for clinicians to navigate.
                   This outdated user experience led to drop-off during the discovery phase and lost registration opportunities.
                 </p>
                 <div className="flex items-center gap-2 text-purple-400">
@@ -90,11 +90,11 @@ export default function InteractiveMaps() {
             {/* The How */}
             <section>
               <h2 className="text-2xl font-bold mb-6 text-purple-400 border-b border-white/10 pb-3">
-                The "How": My Strategic Approach
+                  The &ldquo;How&rdquo;: My Strategic Approach
               </h2>
               <p className="text-slate-300 leading-relaxed mb-6">
-                I integrated Google Maps JavaScript API with custom geocoding services and built a sophisticated filtering 
-                system. This included implementing dynamic marker clustering, custom info windows with rich content, 
+                I integrated Google Maps JavaScript API with custom geocoding services and built a sophisticated filtering
+                system. This included implementing dynamic marker clustering, custom info windows with rich content,
                 and real-time search functionality that updates the map view based on user selections and geographic proximity.
               </p>
 
@@ -105,8 +105,8 @@ export default function InteractiveMaps() {
                   Interactive Map Data Flow
                 </h3>
                 <div className="bg-slate-900 border border-slate-700 rounded-lg p-6">
-                  <img 
-                    src="/assets/tech-backgrounds/purple-dot-matrix.png" 
+                  <img
+                    src="/assets/tech-backgrounds/purple-dot-matrix.png"
                     alt="Purple dot matrix pattern representing dynamic data flow and user interaction patterns"
                     className="w-full max-w-2xl mx-auto rounded-lg"
                   />
@@ -115,7 +115,7 @@ export default function InteractiveMaps() {
                   Dynamic data flow visualization showing user interaction patterns and geographic data processing
                 </p>
               </div>
-              
+
               <div className="grid gap-6">
                 <div className="p-6 bg-white/5 border border-white/10 rounded-xl">
                   <div className="flex items-center gap-3 mb-4">
@@ -201,9 +201,9 @@ export default function InteractiveMaps() {
               </h2>
               <div className="p-6 bg-orange-500/5 border border-orange-500/20 rounded-xl">
                 <p className="text-slate-300 leading-relaxed">
-                  The primary challenge was geocoding a large and constantly changing dataset of existing events and then 
-                  building a seamless, performant front-end filtering experience that felt intuitive to the user. This required 
-                  handling edge cases like invalid addresses, managing API rate limits, and ensuring the map remained responsive 
+                  The primary challenge was geocoding a large and constantly changing dataset of existing events and then
+                  building a seamless, performant front-end filtering experience that felt intuitive to the user. This required
+                  handling edge cases like invalid addresses, managing API rate limits, and ensuring the map remained responsive
                   even with hundreds of events displayed simultaneously.
                 </p>
               </div>
@@ -229,7 +229,7 @@ export default function InteractiveMaps() {
                 </div>
               </div>
               <p className="text-slate-300 leading-relaxed mt-6">
-                The new map significantly increased user engagement and boosted training signups. The dynamic system also 
+                The new map significantly increased user engagement and boosted training signups. The dynamic system also
                 reduced the manual effort required to update event listings, as the geocoding and display happened automatically.
               </p>
             </section>
@@ -241,8 +241,8 @@ export default function InteractiveMaps() {
               </h2>
               <div className="p-6 bg-cyan-500/10 border border-cyan-500/20 rounded-xl">
                 <p className="text-slate-300 leading-relaxed">
-                  This modern UX enhancement improved the brand's perception as innovative and user-focused. The frictionless 
-                  discovery process directly translates to higher conversion rates for training events. The automated system 
+                  This modern UX enhancement improved the brand's perception as innovative and user-focused. The frictionless
+                  discovery process directly translates to higher conversion rates for training events. The automated system
                   reduces ongoing maintenance costs while providing a superior user experience that encourages repeat visits.
                 </p>
               </div>
@@ -250,7 +250,7 @@ export default function InteractiveMaps() {
           </motion.div>
 
           {/* Sidebar */}
-          <motion.aside 
+          <motion.aside
             className="space-y-6"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
