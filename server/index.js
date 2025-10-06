@@ -65,6 +65,19 @@ app.post('/api/ai', async (req, res) => {
   }
 });
 
+// Optional ingestion endpoint for client-side HepMetrics
+app.post('/api/hep-metrics', (req, res) => {
+  try {
+    const evt = req.body || {};
+    const outFile = path.resolve('./server/hep-metrics.log');
+    fs.appendFileSync(outFile, JSON.stringify(evt) + '\n', 'utf8');
+    return res.json({ ok: true });
+  } catch (err) {
+    console.error('Metrics ingest error:', err);
+    return res.status(500).json({ ok: false, error: String(err) });
+  }
+});
+
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log(`AI proxy listening on http://localhost:${PORT}`);

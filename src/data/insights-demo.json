@@ -1,0 +1,41 @@
+{
+  "summary": {
+    "totalSessions": 42,
+    "returnRate": 0.18,
+    "avgDwellTime": 135,
+    "mostOpenedProjects": [
+      { "id": "graston-dashboard", "count": 19 },
+      { "id": "smart-pricing", "count": 12 },
+      { "id": "clinical-compass", "count": 9 }
+    ],
+    "engagementHotspots": [
+      { "path": "/case-studies/graston", "count": 22 },
+      { "path": "/toolbox", "count": 17 },
+      { "path": "/projects", "count": 14 },
+      { "path": "/apps/smart-pricing", "count": 11 }
+    ],
+    "conversationKeywords": [
+      { "word": "automation", "count": 12 },
+      { "word": "voice", "count": 8 },
+      { "word": "pricing", "count": 7 },
+      { "word": "security", "count": 5 },
+      { "word": "analytics", "count": 5 },
+      { "word": "stack", "count": 4 },
+      { "word": "crm", "count": 4 }
+    ],
+    "playsCalled": [
+      { "topic": "analogy", "count": 7 },
+      { "topic": "playbook-pick-and-roll", "count": 4 }
+    ]
+  },
+  "rollups": [
+    { "date": "2025-09-30", "sessions": 5, "avgSessionTime": 110, "topPage": "/projects", "mostUsedFeature": "Chat" },
+    { "date": "2025-10-01", "sessions": 6, "avgSessionTime": 120, "topPage": "/toolbox", "mostUsedFeature": "Chat" },
+    { "date": "2025-10-02", "sessions": 7, "avgSessionTime": 132, "topPage": "/case-studies/graston", "mostUsedFeature": "Voice Mode" },
+    { "date": "2025-10-03", "sessions": 5, "avgSessionTime": 140, "topPage": "/case-studies/graston", "mostUsedFeature": "Chat" },
+    { "date": "2025-10-04", "sessions": 7, "avgSessionTime": 150, "topPage": "/apps/smart-pricing", "mostUsedFeature": "Chat" },
+    { "date": "2025-10-05", "sessions": 6, "avgSessionTime": 138, "topPage": "/toolbox", "mostUsedFeature": "Chat" },
+    { "date": "2025-10-06", "sessions": 6, "avgSessionTime": 160, "topPage": "/case-studies/graston", "mostUsedFeature": "Voice Mode" }
+  ],
+  "coachReport": "Hey Jacob — here’s our post-game recap.\n41 visitors this week, 6 repeat sessions, average session time 142s.\nThe Graston dashboard’s still our MVP — 19 clicks!\nLet’s tweak the CTA on the Toolbox — conversions dipped week-over-week.\nBut hey — belief never dips. On to the next play."
+}

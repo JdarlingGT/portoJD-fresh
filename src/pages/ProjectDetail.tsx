@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import HepMetrics from '../utils/HepMetrics';
 import { 
   ArrowLeft, Clock, Target, Code2, Zap, CheckCircle,
   Bot, Calendar, CreditCard, BarChart3, Workflow, 
@@ -27,6 +28,16 @@ export default function ProjectDetail() {
       setProject(foundProject);
     });
   }, [id]);
+
+  useEffect(() => {
+    if (project?.id) {
+      HepMetrics.logEvent({
+        type: 'view_case_study',
+        id: project.id,
+        source: 'route'
+      });
+    }
+  }, [project]);
 
   if (!data || !project) {
     return (

@@ -2,11 +2,11 @@
   "competencies": [
     {
       "title": "Web Performance & Optimization",
-      "desc": "Full\u2011stack speed: edge caching with Cloudflare, server tuning (Apache/PHP\u2011FPM), WordPress performance with LiteSpeed Cache / WP Rocket, DB optimizations and refactors for strong Core Web Vitals."
+      "desc": "Full-stack speed: edge caching with Cloudflare, server tuning (Apache/PHP-FPM), WordPress performance with LiteSpeed Cache / WP Rocket, DB optimizations and refactors for strong Core Web Vitals."
     },
     {
       "title": "Security & Infrastructure Hardening",
-      "desc": "WAF, Bot Management, rate\u2011limits in Cloudflare; security headers, DNSSEC, API key hygiene to mitigate attack vectors."
+      "desc": "WAF, Bot Management, rate-limits in Cloudflare; security headers, DNSSEC, API key hygiene to mitigate attack vectors."
     },
     {
       "title": "Analytics & Conversion Tracking",
@@ -77,5 +77,14 @@
   ],
   "spotlights": [],
   "stack": {},
-  "playbooks": []
+  "playbooks": [],
+  "projects": [
+    {
+      "id": "graston-dashboard",
+      "title": "Graston Instructor Dashboard",
+      "description": "A React + Mapbox-powered internal tool that gives real-time class and roster visibility.",
+      "image": "/assets/projects/graston-dashboard-thumb.png",
+      "link": "/case-studies/graston"
+    }
+  ]
 }

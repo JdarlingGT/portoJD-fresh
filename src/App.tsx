@@ -1,6 +1,14 @@
+import * as React from 'react';
+
+// Log React version
+console.log('React version:', React.version);
+
+// Check if framer-motion is recognized
+import { motion } from 'framer-motion';
+console.log('Framer Motion:', motion);
 import { BrowserRouter, Routes, Route, Outlet, useLocation, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 // Import Pages
 import Home from './pages/Home';
@@ -39,6 +47,9 @@ import Header from './components/layout/Header';
 import Preloader from './components/ui/Preloader';
 import Footer from './components/layout/Footer';
 import HepAssistant from './components/ui/HepAssistant';
+import HepInsightsDashboard from './components/admin/HepInsightsDashboard';
+import HepMetrics from './utils/HepMetrics';
+import HepDebugConsole from './components/admin/HepDebugConsole';
 
 function useGA(){
   const { pathname, search } = useLocation();
@@ -52,6 +63,12 @@ function useGA(){
 const AppLayout = () => {
   const location = useLocation();
   useGA();
+
+  // Initialize analytics once per app mount
+  useEffect(() => {
+    HepMetrics.init();
+  }, []);
+
   return (
     <>
       <Preloader />
@@ -69,6 +86,7 @@ const AppLayout = () => {
       </AnimatePresence>
       <Footer />
       <HepAssistant />
+      <HepDebugConsole />
     </>
   );
 };
@@ -108,6 +126,9 @@ function App() {
           {/* Platform Routes */}
           <Route path="/platform" element={<PlatformOverview />} />
           <Route path="/platform/demo" element={<PlatformDemo />} />
+
+          {/* Admin - Hep Insights (dev-only or via query gate inside component) */}
+          <Route path="/admin/hep-insights" element={<HepInsightsDashboard />} />
 
           <Route path="*" element={<NotFound />} />
         </Route>

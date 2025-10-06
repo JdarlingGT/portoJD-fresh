@@ -1,7 +1,12 @@
 // Hep Assistant component logic
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import knowledgeBase from '../../data/knowledgeBase.json';
 import HepChat from './HepChat';
+import HepMetrics from '../../utils/HepMetrics';
+import useHepBehavior from '../../hooks/useHepBehavior';
+import { getFirstLaunchIntro } from '../../utils/HepLaunch';
+import { useHepMood } from '../../context/HepMoodContext';
 
 const hepIcon = '/assets/hep/images/hep-icon.png';
 
@@ -10,7 +15,29 @@ const HepAssistant: React.FC = () => {
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
   const [isNapping, setIsNapping] = useState(false);
+  const [mood, setMood] = useState('neutral');
+
+  useEffect(() => {
+    if (isNapping) {
+      setMood('nap');
+      HepMetrics.logEvent({ type: 'nap_start' });
+    } else {
+      setMood('active');
+      HepMetrics.logEvent({ type: 'wake_up' });
+    }
+  }, [isNapping]);
+
+  // (moved below) Sync behavioral mood into global HepMood context
   const [inactiveTimer, setInactiveTimer] = useState<number | null>(null);
+  const behavior = useHepBehavior();
+  const { setMood: setCtxMood } = useHepMood();
+
+  // Sync behavioral mood into global HepMood context (after hooks declared)
+  useEffect(() => {
+    if (behavior?.mood === 'coach') setCtxMood('coach');
+    else if (behavior?.mood === 'film') setCtxMood('film');
+    else setCtxMood('neutral');
+  }, [behavior?.mood, setCtxMood]);
 
   useEffect(() => {
     if (!open) return;
@@ -35,11 +62,22 @@ const HepAssistant: React.FC = () => {
     setInactiveTimer(t);
   };
 
-  const [loading, setLoading] = useState(false);
+
+  const getRandomElement = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
+
+  const playSound = (url: string) => {
+    const audio = new Audio(url);
+    audio.play();
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
+    playSound('/assets/sounds/dribble.mp3');
+    if (Math.random() < 0.25) { // 25% chance to include trivia or quote
+      const randomTriviaOrQuote = Math.random() < 0.5 ? getRandomElement(knowledgeBase.iuTrivia) : getRandomElement(knowledgeBase.quotes);
+      setAnswer(randomTriviaOrQuote);
+      return;
+    }
     e.preventDefault();
-    setLoading(true);
     setAnswer('');
     try {
       const resp = await fetch('/api/ai', {
@@ -53,7 +91,6 @@ const HepAssistant: React.FC = () => {
       setAnswer('AI request failed.');
       console.error('AI request error', err);
     } finally {
-      setLoading(false);
       setQuestion('');
       resetInactivity();
     }
@@ -64,6 +101,10 @@ const HepAssistant: React.FC = () => {
       {open && (
         <div className="bg-white p-4 rounded-lg shadow-lg w-80">
           <HepChat onClose={() => setOpen(false)} />
+          <p className="mt-1 text-xs text-amber-500 italic">{getFirstLaunchIntro()}</p>
+          {behavior.prompt && (
+            <p className="mt-1 text-xs text-amber-500 italic">{behavior.prompt}</p>
+          )}
           <form className="mt-2" onSubmit={handleSubmit}>
             <input
               type="text"

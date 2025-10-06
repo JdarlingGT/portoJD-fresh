@@ -1,4 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import knowledgeBase from '../../data/knowledgeBase.json';
+import HepMetrics from '../../utils/HepMetrics';
+import { getFirstLaunchIntro } from '../../utils/HepLaunch';
 
 interface HepChatProps {
   onClose: () => void;
@@ -6,9 +9,9 @@ interface HepChatProps {
 
 type Msg = { role: 'user' | 'assistant'; content: string };
 
-const HepChat: React.FC<HepChatProps> = ({ onClose }) => {
+const HepChat: React.FC<HepChatProps> = ({ onClose }: HepChatProps) => {
   const [messages, setMessages] = useState<Msg[]>([
-    { role: 'assistant', content: "Hi — I'm Hep. Ask me about Jacob's work, design, or marketing." }
+    { role: 'assistant', content: getFirstLaunchIntro() }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -21,6 +24,29 @@ const HepChat: React.FC<HepChatProps> = ({ onClose }) => {
     }
   }, [messages, loading]);
 
+  // Initialize HepMetrics and optionally inject coach recap in admin/coach mode
+  useEffect(() => {
+    HepMetrics.init();
+
+    const params = new URLSearchParams(window.location.search);
+    const coachMode = params.get('hepCoachMode') === 'true';
+    const adminFlag = localStorage.getItem('hepAdmin') === 'true';
+    const shouldInject = coachMode || adminFlag;
+
+    if (!shouldInject) return;
+
+    (async () => {
+      try {
+        const recap = await HepMetrics.generateCoachReport('weekly');
+        if (recap) {
+          setMessages(prev => [...prev, { role: 'assistant', content: recap }]);
+        }
+      } catch (e) {
+        console.warn('Failed to generate coach report', e);
+      }
+    })();
+  }, []);
+
   const sendMessage = async () => {
     const trimmed = input.trim();
     if (!trimmed) return;
@@ -30,9 +56,15 @@ const HepChat: React.FC<HepChatProps> = ({ onClose }) => {
     setMessages(nextMessages);
     setInput('');
     setLoading(true);
+    // Log chat interaction
+    HepMetrics.logEvent({
+      type: 'chat_message',
+      source: 'hep-chat',
+      meta: { length: trimmed.length, text: trimmed }
+    });
 
     try {
-      const apiUrl = (import.meta.env.VITE_HEP_API_URL as string) || '/api/ask-hep';
+      const apiUrl = (import.meta as any).env?.VITE_HEP_API_URL || '/api/ai';
       const resp = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -40,7 +72,20 @@ const HepChat: React.FC<HepChatProps> = ({ onClose }) => {
       });
 
       const data = await resp.json();
-      const reply = data?.answer || data?.choices?.[0]?.message?.content || "Woof! I couldn't get an answer.";
+      let reply = data?.answer || data?.choices?.[0]?.message?.content || "Woof! I couldn't get an answer.";
+      if (trimmed.includes('strategy') && Math.random() < 0.4) {
+        const analogy = knowledgeBase.iuPlaybook.basketball[Math.floor(Math.random() * knowledgeBase.iuPlaybook.basketball.length)];
+        reply += `\n\n${analogy}`;
+        // Track "Play Call" when Hep drops an analogy
+        HepMetrics.logEvent({
+          type: 'play_call',
+          source: 'hep-chat',
+          meta: { topic: 'analogy', text: analogy }
+        });
+      }
+      if (trimmed.includes('excited') || trimmed.includes('enthusiastic')) {
+        reply += "\n\nGo Hoosiers!";
+      }
       const assistantMsg: Msg = { role: 'assistant', content: reply };
       setMessages(prev => [...prev, assistantMsg]);
     } catch (err) {

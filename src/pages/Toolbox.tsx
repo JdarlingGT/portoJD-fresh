@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { ExternalLink, Linkedin } from 'lucide-react';
 import toolboxData from '../data/toolbox.json';
+import HepMetrics from '../utils/HepMetrics';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -64,11 +65,17 @@ export default function Toolbox() {
                 className="flex flex-wrap gap-4 mb-8"
                 variants={slideUp}
               >
-                <button className="bg-cyan-400 text-black px-6 py-3 rounded-lg font-semibold hover:bg-cyan-300 transition-colors flex items-center gap-2">
+                <button
+                  className="bg-cyan-400 text-black px-6 py-3 rounded-lg font-semibold hover:bg-cyan-300 transition-colors flex items-center gap-2"
+                  onClick={() => HepMetrics.logEvent({ type: 'toolbox_click', id: 'linkedin', source: 'toolbox' })}
+                >
                   <Linkedin className="w-4 h-4" />
                   Connect on LinkedIn
                 </button>
-                <button className="border border-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors flex items-center gap-2">
+                <button
+                  className="border border-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors flex items-center gap-2"
+                  onClick={() => HepMetrics.logEvent({ type: 'toolbox_click', id: 'profile', source: 'toolbox' })}
+                >
                   <ExternalLink className="w-4 h-4" />
                   View Profile
                 </button>
