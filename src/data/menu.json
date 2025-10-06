@@ -47,7 +47,9 @@
         { "label": "Clinical Compass", "href": "/apps/clinical-compass" },
         { "label": "ROI Calculator", "href": "/apps/roi" },
         { "label": "License Requirements", "href": "/apps/license" },
-        { "label": "Smart Pricing Tool", "href": "/apps/smart-pricing" }
+        { "label": "Smart Pricing Tool", "href": "/apps/smart-pricing" },
+        { "label": "Platform Overview", "href": "/platform" },
+        { "label": "Run Live Demo", "href": "/platform/demo" }
       ]
     },
     {

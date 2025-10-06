@@ -28,7 +28,6 @@ export default function useHepBehavior(): HepBehaviorState {
   // Track last activity change
   const lastActivityRef = useRef<number>(Date.now());
   const idleTimerRef = useRef<number | null>(null);
-  const bounceTimerRef = useRef<number | null>(null);
   const hasShownIdleRef = useRef(false);
   const hasShownBounceRef = useRef(false);
   const hasShownDemoRef = useRef(false);

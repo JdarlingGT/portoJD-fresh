@@ -5,6 +5,7 @@ import SearchModal from '../ui/SearchModal';
 import ThemeToggle from '../ThemeToggle';
 import { Search } from 'lucide-react';
 import { Bars3Icon } from '@heroicons/react/24/outline';
+import { motion } from 'framer-motion';
 
 const Header = () => {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -20,13 +21,20 @@ const Header = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/60 to-black/30 backdrop-blur-lg border-b border-white/6">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-background-dark/80 to-background-dark/60 backdrop-blur-lg border-b border-secondary/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <div className="flex items-center gap-4">
               <Link to="/" className="flex items-center gap-3">
                 <span className="sr-only">Home</span>
-                <div className="rounded-md bg-white/5 px-3 py-2 text-lg font-bold text-white">JD</div>
+                <motion.img
+                  src="/assets/JD Logo.png"
+                  alt="JD Logo"
+                  className="h-10 w-auto"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                />
               </Link>
               {/* Desktop Mega Menu rendered inline; component handles responsive behavior */}
               <div className="hidden md:block">
@@ -37,27 +45,20 @@ const Header = () => {
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setSearchOpen(true)}
-                className="hidden md:inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-slate-300 hover:bg-white/5 transition"
+                className="hidden md:inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-body text-secondary/70 hover:bg-secondary/5 transition-all duration-300 hover:shadow-brand"
                 aria-label="Open search (press /)"
               >
                 <Search className="w-4 h-4" />
                 <span className="text-sm">Search</span>
-                <span className="ml-2 text-xs text-slate-400">/</span>
+                <span className="ml-2 text-xs text-secondary/50">/</span>
               </button>
 
               <ThemeToggle />
 
               <div className="hidden md:flex items-center gap-3">
                 <Link
-                  to="/platform"
-                  className="rounded-full px-3 py-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-sm font-semibold text-white shadow-md hover:opacity-95 transition"
-                >
-                  Platform
-                </Link>
-
-                <Link
                   to="/resume"
-                  className="rounded-full px-4 py-2 border border-white/10 text-sm font-medium text-white hover:bg-white/6 transition"
+                  className="rounded-xl px-4 py-2 border border-secondary/10 text-sm font-body font-medium text-secondary hover:bg-secondary/5 transition-all duration-300 hover:shadow-brand"
                 >
                   Download Résumé
                 </Link>
@@ -70,7 +71,7 @@ const Header = () => {
 
               {/* Fallback hamburger (for small screens where MegaMenu provides the dialog) */}
               <button
-                className="md:hidden inline-flex items-center justify-center rounded-md p-2 text-slate-300 hover:bg-white/5"
+                className="md:hidden inline-flex items-center justify-center rounded-xl p-2 text-secondary/70 hover:bg-secondary/5 transition-all duration-300"
                 aria-label="Open navigation"
                 onClick={() => {
                   // MegaMenu handles its own mobile trigger; keep this for accessibility fallback

@@ -2,22 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom scrollbar */
+/* CSS Custom Properties for Brand Tokens */
+:root {
+  /* Brand Colors */
+  --color-primary: #990000;
+  --color-secondary: #EAEAEA;
+  --color-background-light: #F7F7F7;
+  --color-background-dark: #0F0F0F;
+  --color-accent-start: #990000;
+  --color-accent-end: #FF7F50;
+
+  /* Typography */
+  --font-heading: 'Inter', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+
+  /* Border Radius */
+  --border-radius-xl: 0.75rem;
+
+  /* Shadows */
+  --shadow-brand: 0 4px 6px -1px rgba(153, 0, 0, 0.1), 0 2px 4px -1px rgba(153, 0, 0, 0.06);
+  --shadow-brand-lg: 0 10px 15px -3px rgba(153, 0, 0, 0.1), 0 4px 6px -2px rgba(153, 0, 0, 0.05);
+}
+
+/* Custom scrollbar with brand colors */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  background: var(--color-background-dark);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #404040;
-  border-radius: 4px;
+  background: var(--color-primary);
+  border-radius: var(--border-radius-xl);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #606060;
+  background: #b91c1c;
 }
 
 /* Smooth scrolling */
@@ -25,9 +47,9 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Focus styles for accessibility */
+/* Focus styles for accessibility with brand colors */
 *:focus {
-  outline: 2px solid #00FFFF;
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 
@@ -45,30 +67,30 @@ html {
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-  .text-slate-400 {
-    color: #ffffff !important;
-  }
-
-  .border-white\/10 {
-    border-color: #ffffff !important;
+  .text-secondary\/70 {
+    color: var(--color-secondary) !important;
   }
 }
 
 /* Enhanced deep dive content styling */
 .deep-dive-content h2 {
-  @apply text-2xl font-bold mt-12 mb-6 text-cyan-400 border-b border-white/10 pb-3;
+  @apply text-2xl font-bold mt-12 mb-6 text-primary-400 border-b border-secondary/10 pb-3;
+  font-family: 'Inter', sans-serif;
 }
 
 .deep-dive-content h3 {
-  @apply text-xl font-bold mt-8 mb-4 text-white;
+  @apply text-xl font-bold mt-8 mb-4 text-secondary;
+  font-family: 'Inter', sans-serif;
 }
 
 .deep-dive-content h4 {
-  @apply text-lg font-semibold mt-6 mb-3 text-slate-200;
+  @apply text-lg font-semibold mt-6 mb-3 text-secondary/80;
+  font-family: 'Outfit', sans-serif;
 }
 
 .deep-dive-content p {
-  @apply mb-6 leading-relaxed text-slate-300;
+  @apply mb-6 leading-relaxed text-secondary/70;
+  font-family: 'Outfit', sans-serif;
 }
 
 .deep-dive-content ul, .deep-dive-content ol {
@@ -76,7 +98,8 @@ html {
 }
 
 .deep-dive-content li {
-  @apply text-slate-300 leading-relaxed;
+  @apply text-secondary/70 leading-relaxed;
+  font-family: 'Outfit', sans-serif;
 }
 
 .deep-dive-content ul li {
@@ -85,7 +108,7 @@ html {
 
 .deep-dive-content ul li::before {
   content: "•";
-  @apply absolute left-0 text-cyan-400 font-bold;
+  @apply absolute left-0 text-primary-400 font-bold;
 }
 
 .deep-dive-content ol li {
@@ -93,11 +116,13 @@ html {
 }
 
 .deep-dive-content blockquote {
-  @apply border-l-4 border-cyan-400 pl-6 py-4 my-6 bg-white/5 rounded-r-lg italic text-slate-300;
+  @apply border-l-4 border-primary-400 pl-6 py-4 my-6 bg-secondary/5 rounded-r-xl italic text-secondary/80;
+  font-family: 'Outfit', sans-serif;
 }
 
 .deep-dive-content code {
-  @apply bg-white/10 px-2 py-1 rounded text-cyan-300 text-sm font-mono;
+  @apply bg-secondary/10 px-2 py-1 rounded-lg text-primary-300 text-sm;
+  font-family: 'Outfit', sans-serif;
 }
 
 .deep-dive-content pre {

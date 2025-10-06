@@ -11,7 +11,7 @@ type AnyEvent = {
   id?: string;
   idRef?: string;
   sessionId?: string;
-  meta?: Record<string, any>;
+  meta?: Record<string, unknown>;
 };
 
 function useStoredEvents() {
@@ -31,10 +31,10 @@ function useStoredEvents() {
   React.useEffect(() => {
     load();
     const onChanged = () => load();
-    window.addEventListener('hep:events:changed', onChanged as any);
+    window.addEventListener('hep:events:changed', onChanged as EventListener);
     const t = window.setInterval(load, 3_000);
     return () => {
-      window.removeEventListener('hep:events:changed', onChanged as any);
+      window.removeEventListener('hep:events:changed', onChanged as EventListener);
       window.clearInterval(t);
     };
   }, [load]);
@@ -78,7 +78,7 @@ export default function HepDebugConsole() {
     const params = new URLSearchParams(window.location.search);
     const q = params.get('hepDebug') === 'true' || params.get('hepCoachMode') === 'true';
     const flag = localStorage.getItem('hep:debug') === 'true';
-    const dev = (import.meta as any).env?.MODE !== 'production';
+    const dev = import.meta.env.MODE !== 'production';
     setVisible(Boolean(q || flag || dev));
   }, []);
 
@@ -94,7 +94,9 @@ export default function HepDebugConsole() {
           localStorage.removeItem('hep:events');
           setStatus('Cleared events');
           reload();
-        } catch {}
+        } catch {
+          // Ignore localStorage errors
+        }
       }
     };
     window.addEventListener('keydown', onKey);
@@ -136,7 +138,9 @@ export default function HepDebugConsole() {
               a.href = URL.createObjectURL(blob);
               a.download = `hep-debug-events-${Date.now()}.json`;
               a.click();
-            } catch {}
+            } catch {
+              // Ignore blob URL creation errors
+            }
           }}
           className="px-2 py-1 text-xs bg-white/10 border border-white/10 rounded hover:bg-white/20"
         >
@@ -147,7 +151,9 @@ export default function HepDebugConsole() {
             try {
               navigator.clipboard.writeText(JSON.stringify(events.slice(-200), null, 2));
               setStatus('Copied last 200 events');
-            } catch {}
+            } catch {
+              // Ignore clipboard write errors
+            }
           }}
           className="px-2 py-1 text-xs bg-white/10 border border-white/10 rounded hover:bg-white/20"
         >
@@ -168,7 +174,9 @@ export default function HepDebugConsole() {
               <button
                 onClick={() => { try {
                   HepMetrics.logEvent({ type: 'chat_message', source: 'hep-chat', meta: { text: 'debug-ping' }});
-                } catch {} }}
+                } catch {
+                  // Ignore logging errors
+                } }}
                 className="px-2 py-1 text-[11px] rounded bg-sky-600/30 border border-sky-600 hover:bg-sky-600/50"
                 title="Emit a debug chat_message"
               >
@@ -178,7 +186,9 @@ export default function HepDebugConsole() {
                 onClick={() => { try {
                   HepMetrics.performDailyRollupIfDue();
                   setStatus('Rollup checked');
-                } catch {} }}
+                } catch {
+                  // Ignore rollup errors
+                } }}
                 className="px-2 py-1 text-[11px] rounded bg-purple-600/30 border border-purple-600 hover:bg-purple-600/50"
                 title="Force rollup check"
               >
@@ -191,7 +201,9 @@ export default function HepDebugConsole() {
                     localStorage.removeItem('hep:events');
                     setStatus('Cleared events');
                     reload();
-                  } catch {}
+                  } catch {
+                    // Ignore localStorage errors
+                  }
                 }}
                 className="px-2 py-1 text-[11px] rounded bg-rose-600/30 border border-rose-600 hover:bg-rose-600/50"
                 title="Clear events"

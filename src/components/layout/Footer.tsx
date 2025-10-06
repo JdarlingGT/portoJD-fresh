@@ -25,7 +25,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#0A0A0A] text-slate-400">
+    <footer className="bg-gray-900 dark:bg-gray-950 text-gray-400 dark:text-gray-500">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col md:flex-row items-center justify-between">
           <div className="text-center md:text-left mb-4 md:mb-0">
@@ -37,7 +37,7 @@ const Footer = () => {
               href="https://github.com/JdarlingGT"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
+              className="hover:text-white dark:hover:text-gray-200 transition-colors"
               aria-label="GitHub"
             >
               <Github className="w-5 h-5" />
@@ -46,14 +46,14 @@ const Footer = () => {
               href="https://linkedin.com/in/jacobdarling"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
+              className="hover:text-white dark:hover:text-gray-200 transition-colors"
               aria-label="LinkedIn"
             >
               <Linkedin className="w-5 h-5" />
             </a>
             <Link
               to="/resume"
-              className="hover:text-white transition-colors"
+              className="hover:text-white dark:hover:text-gray-200 transition-colors"
               aria-label="Resume"
             >
               <FileText className="w-5 h-5" />
@@ -66,7 +66,7 @@ const Footer = () => {
               className="flex items-center space-x-2 bg-gradient-to-r from-cyan-500 to-purple-500 text-white px-4 py-2 rounded-lg hover:from-cyan-600 hover:to-purple-600 transition-all"
             >
               <Music className="w-4 h-4" />
-              <span>Play Hep's Song</span>
+              <span>Play Hep&apos;s Song</span>
             </button>
           )}
         </div>

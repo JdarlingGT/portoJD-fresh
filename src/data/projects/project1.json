@@ -1,0 +1,11 @@
+{
+  "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  "title": "E-Commerce Platform Redesign",
+  "summary": "Complete overhaul of a legacy e-commerce site with modern React architecture, improving load times by 40% and conversion rates by 25%.",
+  "metrics": {
+    "loadTime": "40% faster",
+    "conversion": "25% increase",
+    "users": "500K+ active"
+  },
+  "caseStudyRoute": "/case-studies/ecommerce-redesign"
+}

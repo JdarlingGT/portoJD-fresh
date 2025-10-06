@@ -22,21 +22,21 @@ const MenuColumns: React.FC<{ query?: string }> = ({ query = '' }) => {
   const q = query.trim().toLowerCase();
   return (
     <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      {menuData.columns.map((col: any) => {
+      {menuData.columns.map((col: { label: string; links: MenuLink[] }) => {
         const filtered = q
           ? col.links.filter((l: MenuLink) => l.label.toLowerCase().includes(q) || l.href.toLowerCase().includes(q))
           : col.links;
         if (filtered.length === 0) return null;
         return (
           <div key={col.label}>
-            <div className="mb-3 text-xs uppercase tracking-wide text-slate-400">{col.label}</div>
+            <div className="mb-3 text-xs font-body uppercase tracking-wide text-secondary/50">{col.label}</div>
             <div className="flex flex-col gap-2">
               {filtered.map((l: MenuLink) => (
                 isExternal(l.href) ? (
                   <a
                     key={l.href}
                     href={l.href}
-                    className="rounded-md px-3 py-2 text-sm text-slate-200 hover:bg-white/5 focus:outline-none"
+                    className="rounded-xl px-3 py-2 text-sm font-body text-secondary hover:bg-secondary/5 focus:outline-none transition-all duration-300 hover:shadow-brand"
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -46,7 +46,7 @@ const MenuColumns: React.FC<{ query?: string }> = ({ query = '' }) => {
                   <Link
                     key={l.href}
                     to={l.href}
-                    className="rounded-md px-3 py-2 text-sm text-slate-200 hover:bg-white/5 focus:outline-none"
+                    className="rounded-xl px-3 py-2 text-sm font-body text-secondary hover:bg-secondary/5 focus:outline-none transition-all duration-300 hover:shadow-brand"
                   >
                     {l.label}
                   </Link>
@@ -73,7 +73,7 @@ const MegaMenu: React.FC = () => {
   }, []);
 
   const totalLinks = useMemo(() => {
-    return menuData.columns.reduce((acc: number, c: any) => acc + (c.links?.length || 0), 0);
+    return menuData.columns.reduce((acc: number, c: { links?: MenuLink[] }) => acc + (c.links?.length || 0), 0);
   }, []);
 
   return (
@@ -81,7 +81,7 @@ const MegaMenu: React.FC = () => {
       {/* Desktop Popover */}
       <div className="hidden md:flex items-center gap-4">
         <Popover className="relative">
-          {({ open }) => {
+          {({ open }: { open: boolean }) => {
             // keep local desktop state in sync for hover/focus
             if (open && !desktopOpen) setDesktopOpen(true);
             if (!open && desktopOpen) setDesktopOpen(false);

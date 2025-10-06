@@ -1,0 +1,11 @@
+{
+  "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+  "title": "API Performance Optimization",
+  "summary": "Optimized backend APIs for a fintech application, reducing response times from 2s to 200ms and handling 10x more concurrent users.",
+  "metrics": {
+    "responseTime": "90% reduction",
+    "concurrency": "10x increase",
+    "uptime": "99.9%"
+  },
+  "caseStudyRoute": "/case-studies/api-optimization"
+}

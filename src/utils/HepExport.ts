@@ -8,12 +8,6 @@ export type ExportFilter = {
   toTs?: number;    // inclusive epoch ms
 };
 
-type HepEvent = Parameters<typeof HepMetrics['logEvent']>[0] & {
-  ts?: number;
-  sessionId?: string;
-  path?: string;
-};
-
 export interface Insight {
   insight: string;
   recommendation: string;
@@ -59,7 +53,7 @@ export const HepExport = {
         JSON.stringify(e.meta || {}),
       ]),
     ];
-    return rows.map(r => r.map(v => `"${String(v).replaceAll('"', '""')}"`).join(',')).join('\n');
+    return rows.map(r => r.map((v: unknown) => `"${String(v).replaceAll('"', '""')}"`).join(',')).join('\n');
   },
 
   // Simple scoring algorithm to auto-generate insight summaries

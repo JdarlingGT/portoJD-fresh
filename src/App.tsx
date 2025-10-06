@@ -54,8 +54,8 @@ import HepDebugConsole from './components/admin/HepDebugConsole';
 function useGA(){
   const { pathname, search } = useLocation();
   useEffect(() => {
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('config', 'G-XXXX', { page_path: pathname + search });
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('config', 'G-XXXX', { page_path: pathname + search });
     }
   }, [pathname, search]);
 }
@@ -68,6 +68,19 @@ const AppLayout = () => {
   useEffect(() => {
     HepMetrics.init();
   }, []);
+
+  // Handle hash scrolling for anchor links
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.replace('#', ''));
+      if (element) {
+        // Small delay to ensure the page has rendered
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    }
+  }, [location]);
 
   return (
     <>
@@ -138,3 +151,10 @@ function App() {
 }
 
 export default App;
+
+// Extend window type for Google Analytics
+declare global {
+  interface Window {
+    gtag?: (command: string, targetId: string, config?: { page_path: string }) => void;
+  }
+}

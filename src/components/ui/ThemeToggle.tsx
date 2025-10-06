@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTheme } from '../../hooks/useTheme';
 
 const ToggleButton: React.FC = () => {
@@ -9,6 +9,22 @@ const ToggleButton: React.FC = () => {
   };
 
   const label = theme === 'system' ? 'Auto' : theme === 'dark' ? 'Dark' : 'Light';
+
+  // The useEffect hook ensures smooth transitions are applied globally for theme changes.
+  useEffect(() => {
+    const root = window.document.documentElement;
+    root.classList.add('theme-transition');
+
+    const removeTransition = () => {
+      root.classList.remove('theme-transition');
+    };
+
+    root.addEventListener('transitionend', removeTransition);
+
+    return () => {
+      root.removeEventListener('transitionend', removeTransition);
+    };
+  }, []);
 
   return (
     <button

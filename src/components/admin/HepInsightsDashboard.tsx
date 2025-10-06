@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import HepMetrics, { DailyRollup, HepSummary } from '../../utils/HepMetrics';
 import {
   ResponsiveContainer,
@@ -198,7 +198,7 @@ export default function HepInsightsDashboard() {
                       JSON.stringify(e.meta || {}),
                     ]),
                   ];
-                  const csv = rows.map(r => r.map(v => `"${String(v).replaceAll('"', '""')}"`).join(',')).join('\n');
+                  const csv = rows.map(r => r.map((v: unknown) => `"${String(v).replaceAll('"', '""')}"`).join(',')).join('\n');
                   const blob = new Blob([csv], { type: 'text/csv' });
                   const a = document.createElement('a');
                   a.href = URL.createObjectURL(blob);

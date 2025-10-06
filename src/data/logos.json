@@ -1,0 +1,132 @@
+{
+  "categories": {
+    "dev": "Development & Programming",
+    "cloud": "Cloud & Infrastructure",
+    "marketing": "Marketing & Analytics",
+    "creative": "Design & Creative",
+    "cms": "Content Management",
+    "automation": "Automation & CRM"
+  },
+  "items": [
+    {
+      "name": "React",
+      "category": "dev",
+      "src": "/assets/logos/react.svg",
+      "tooltip": "Used in: Graston Instructor Dashboard, Hep AI Interface"
+    },
+    {
+      "name": "TypeScript",
+      "category": "dev",
+      "src": "/assets/logos/typescript.svg",
+      "tooltip": "Used in: Portfolio ecosystem, Hep AI development"
+    },
+    {
+      "name": "Vite",
+      "category": "dev",
+      "src": "/assets/logos/vite.svg",
+      "tooltip": "Used in: Fast development builds for all projects"
+    },
+    {
+      "name": "Tailwind CSS",
+      "category": "dev",
+      "src": "/assets/logos/tailwind.svg",
+      "tooltip": "Used in: All modern web projects, responsive design"
+    },
+    {
+      "name": "Node.js",
+      "category": "dev",
+      "src": "/assets/logos/nodejs.svg",
+      "tooltip": "Used in: Server-side development, API endpoints"
+    },
+    {
+      "name": "Google Cloud",
+      "category": "cloud",
+      "src": "/assets/logos/google-cloud.svg",
+      "tooltip": "Used in: Cloud infrastructure, scalable deployments"
+    },
+    {
+      "name": "Vercel",
+      "category": "cloud",
+      "src": "/assets/logos/vercel.svg",
+      "tooltip": "Used in: Portfolio deployment, edge functions"
+    },
+    {
+      "name": "Cloudflare",
+      "category": "cloud",
+      "src": "/assets/logos/cloudflare.svg",
+      "tooltip": "Used in: CDN, security, performance optimization"
+    },
+    {
+      "name": "WordPress",
+      "category": "cms",
+      "src": "/assets/logos/wordpress.svg",
+      "tooltip": "Used in: Graston Technique website, custom development"
+    },
+    {
+      "name": "Adobe Creative Cloud",
+      "category": "creative",
+      "src": "/assets/logos/adobe-cc.svg",
+      "tooltip": "Used in: Design assets, creative direction"
+    },
+    {
+      "name": "Google Analytics",
+      "category": "marketing",
+      "src": "/assets/logos/google-analytics.svg",
+      "tooltip": "Used in: Performance tracking, conversion optimization"
+    },
+    {
+      "name": "Framer Motion",
+      "category": "dev",
+      "src": "/assets/logos/framer.svg",
+      "tooltip": "Used in: Smooth animations, interactive experiences"
+    },
+    {
+      "name": "Git",
+      "category": "dev",
+      "src": "/assets/logos/git.svg",
+      "tooltip": "Used in: Version control, collaborative development"
+    },
+    {
+      "name": "Figma",
+      "category": "creative",
+      "src": "/assets/logos/figma.svg",
+      "tooltip": "Used in: UI/UX design, prototyping"
+    },
+    {
+      "name": "FluentCRM",
+      "category": "automation",
+      "src": "/assets/logos/fluentcrm.svg",
+      "tooltip": "Used in: CRM automation, lead management"
+    },
+    {
+      "name": "LearnDash",
+      "category": "cms",
+      "src": "/assets/logos/learndash.svg",
+      "tooltip": "Used in: LMS development, course management"
+    },
+    {
+      "name": "WooCommerce",
+      "category": "cms",
+      "src": "/assets/logos/woocommerce.svg",
+      "tooltip": "Used in: E-commerce solutions, payment processing"
+    },
+    {
+      "name": "Google Tag Manager",
+      "category": "marketing",
+      "src": "/assets/logos/gtm.svg",
+      "tooltip": "Used in: Tag management, conversion tracking"
+    },
+    {
+      "name": "WP Rocket",
+      "category": "dev",
+      "src": "/assets/logos/wp-rocket.svg",
+      "tooltip": "Used in: Performance optimization, caching"
+    },
+    {
+      "name": "Apache",
+      "category": "cloud",
+      "src": "/assets/logos/apache.svg",
+      "tooltip": "Used in: Server configuration, web hosting"
+    }
+  ]
+}

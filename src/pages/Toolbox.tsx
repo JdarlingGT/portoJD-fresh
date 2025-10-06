@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { ExternalLink, Linkedin } from 'lucide-react';
 import toolboxData from '../data/toolbox.json';
 import HepMetrics from '../utils/HepMetrics';
+import LogoGrid from '../components/LogoGrid';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -26,13 +27,14 @@ const staggerContainer = {
 
 export default function Toolbox() {
   const [activeTab, setActiveTab] = useState('strengths');
+  const [stackCategory, setStackCategory] = useState('all');
 
   return (
     <main className="min-h-screen bg-[#0F0F0F] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        
+
         {/* Hero Section */}
-        <motion.section 
+        <motion.section
           className="mb-16"
           initial="hidden"
           animate="visible"
@@ -40,28 +42,28 @@ export default function Toolbox() {
         >
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <motion.div 
+              <motion.div
                 className="inline-block px-4 py-2 bg-cyan-400/10 border border-cyan-400/20 rounded-full text-cyan-400 text-sm font-semibold mb-6"
                 variants={slideUp}
               >
                 🛠️ Professional Toolbox
               </motion.div>
-              
-              <motion.h1 
+
+              <motion.h1
                 className="text-4xl md:text-6xl font-bold mb-6"
                 variants={slideUp}
               >
                 Tools I <span className="text-cyan-400">Reach For</span>
               </motion.h1>
-              
-              <motion.p 
+
+              <motion.p
                 className="text-xl text-slate-300 mb-8 leading-relaxed"
                 variants={slideUp}
               >
                 A comprehensive overview of my technical expertise and professional capabilities. From strategy and architecture to problem-solving and scalable marketing systems.
               </motion.p>
-              
-              <motion.div 
+
+              <motion.div
                 className="flex flex-wrap gap-4 mb-8"
                 variants={slideUp}
               >
@@ -81,14 +83,14 @@ export default function Toolbox() {
                 </button>
               </motion.div>
             </div>
-            
-            <motion.div 
+
+            <motion.div
               className="relative"
               variants={slideUp}
             >
               <div className="w-full max-w-md mx-auto">
-                <img 
-                  src="/assets/personal/professional-headshot.jpg" 
+                <img
+                  src="/assets/personal/professional-headshot.jpg"
                   alt="Jacob Darling - Professional Headshot"
                   className="w-full rounded-2xl shadow-2xl border border-white/10"
                 />
@@ -98,7 +100,7 @@ export default function Toolbox() {
         </motion.section>
 
         {/* Tab Navigation */}
-        <motion.div 
+        <motion.div
           className="flex flex-wrap justify-center gap-4 mb-12"
           initial="hidden"
           animate="visible"
@@ -231,55 +233,6 @@ export default function Toolbox() {
           </motion.section>
         )}
 
-        {activeTab === 'stack' && (
-          <motion.section
-            key="stack"
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
-            className="mb-16"
-          >
-            <h2 className="text-3xl font-bold mb-8 text-center text-cyan-400">
-              My Stack
-            </h2>
-            <p className="text-center text-slate-300 mb-12 max-w-3xl mx-auto">
-              Tools I reach for. A comprehensive, sustainable list of my technical toolkit across all areas of expertise.
-            </p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {Object.entries(toolboxData.stack).map(([category, technologies]) => (
-                <motion.div 
-                  key={category}
-                  className="p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl"
-                  variants={slideUp}
-                >
-                  <h3 className="text-lg font-bold mb-4 text-cyan-400">{category}</h3>
-                  <ul className="space-y-3">
-                    {(technologies as any[]).map((tool: any, index: number) => (
-                      <li key={index} className="text-slate-300 text-sm">
-                        <div className="flex items-start space-x-3">
-                          <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></span>
-                          <div>
-                            <div className="font-semibold text-white">{tool.name}</div>
-                            <div className="text-xs text-slate-400 mt-1">{tool.why}</div>
-                            {tool.link && (
-                              <a 
-                                href={tool.link} 
-                                className="text-xs text-cyan-400 hover:text-cyan-300 transition-colors"
-                              >
-                                View Case Study →
-                              </a>
-                            )}
-                          </div>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              ))}
-            </div>
-          </motion.section>
-        )}
-
         {activeTab === 'playbooks' && (
           <motion.section
             key="playbooks"
@@ -321,7 +274,7 @@ export default function Toolbox() {
                     </div>
                   )}
                   {playbook.link && (
-                    <a 
+                    <a
                       href={playbook.link}
                       className="inline-block mt-4 text-cyan-400 hover:text-cyan-300 transition-colors text-sm font-semibold"
                     >
@@ -331,6 +284,61 @@ export default function Toolbox() {
                 </motion.div>
               ))}
             </div>
+          </motion.section>
+        )}
+
+        {activeTab === 'stack' && (
+          <motion.section
+            key="stack"
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="mb-16"
+          >
+            <h2 className="text-3xl font-bold mb-8 text-center text-cyan-400">
+              My Tech Stack
+            </h2>
+            <p className="text-center text-slate-300 mb-12 max-w-3xl mx-auto">
+              The tools and platforms I use to build, deploy, and scale solutions. Hover over each logo to see where I&apos;ve applied it.
+            </p>
+
+            {/* Category Filter */}
+            <div className="flex flex-wrap justify-center gap-4 mb-12">
+              {
+                [
+                  { id: 'all', label: 'All Tools' },
+                  { id: 'dev', label: 'Development' },
+                  { id: 'cloud', label: 'Cloud & Infra' },
+                  { id: 'marketing', label: 'Marketing' },
+                  { id: 'creative', label: 'Design' },
+                  { id: 'cms', label: 'CMS' },
+                  { id: 'automation', label: 'Automation' }
+                ].map((filter) => (
+                  <motion.button
+                    key={filter.id}
+                    onClick={() => setStackCategory(filter.id)}
+                    className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+                      stackCategory === filter.id
+                        ? 'bg-cyan-400 text-black'
+                        : 'bg-white/10 text-white hover:bg-white/20'
+                    }`}
+                    variants={slideUp}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {filter.label}
+                  </motion.button>
+                ))
+              }
+            </div>
+
+            {/* Logo Grid */}
+            <LogoGrid
+              category={stackCategory}
+              columns={4}
+              animation={true}
+              themeAware={true}
+            />
           </motion.section>
         )}
       </div>
